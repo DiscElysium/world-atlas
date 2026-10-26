@@ -40,10 +40,10 @@ window.WORKS = [
     id:'grapple',number:'05',name:'钩锁与霰弹',english:'Grapple & Recoil',category:'规则与交互 / GAME FEEL & PHYSICS',
     hook:'把后坐力，变成移动的可能。',tags:['2026','GameMaker / GML','运动机制原型'],
     summary:'围绕“拉近、甩出、反冲”研究连续运动的手感。钩锁提供持续径向牵引，低阻力保留惯性，霰弹后坐力又为运动增加一次主动改变方向的机会。',
-    originalScene:true,caption:'GameMaker 原工程场景素材 · 远景、中景与前景图层组合展示。',
+    playable:true,caption:'GameMaker 原工程直接导出 · 三个原有房间 · 键鼠操作。',
     points:[['牵引与惯性分开调节','持续拉力改变径向速度，松钩后仍保留切向动量，形成连续摆荡而非瞬间吸附。'],['射击也是位移资源','每次霰弹施加反向速度脉冲，两发弹容量让开火时机同时影响战斗和路线。'],['用动作完成换弹','空枪后通过鼠标上甩触发旋转换弹。调试界面显示速度、加速度与绳向，帮助观察参数变化。']],
     images:[],
-    notes:'原作是 Room1 → Room2 → Room3 循环的 GameMaker 机制原型，采用逐步物理与精确碰撞蒙版。此处展示原工程场景素材和已核对的运动机制；场景素材的原创归属尚未完整核实。'
+    notes:'试玩由原 GameMaker 工程直接导出，保留 Room1 → Room2 → Room3 的循环、像素场景、精确碰撞、钩锁、霰弹反冲和上甩换弹。网页增加双语操作说明、加载、暂停及全屏入口，原玩法与调试显示保持不变。场景素材的原创归属尚未完整核实。'
   },
   {
     id:'unigeo',number:'06',name:'UniGeo',english:'基础模型的几何适配',category:'视觉研究 / FEATURE ADAPTATION',

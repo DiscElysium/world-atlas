@@ -420,8 +420,8 @@ window.SITE_TRANSLATIONS = {
     "zh": "下一个项目 →"
   },
   "game-title": {
-    "en": "Grapple & Recoil <span>/ Playable edition</span>",
-    "zh": "钩锁与霰弹 <span>/ 网页试玩</span>"
+    "en": "Grapple &amp; Recoil <span>/ GameMaker original</span>",
+    "zh": "钩锁与霰弹 <span>/ GameMaker 原版</span>"
   },
   "orientation": {
     "en": "More room in landscape",

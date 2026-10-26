@@ -40,10 +40,10 @@ window.WORKS_EN = window.WORKS.map((work, index) => ({...work, ...[
     name:'Grapple & Recoil', english:'A study in momentum', category:'RULES & INTERACTION / GAME FEEL & PHYSICS',
     hook:'Turn recoil into a way to move.', tags:['2026','GameMaker / GML','Movement-mechanics prototype'],
     summary:'A study of continuous movement through pulling, swinging and recoil. The grapple applies sustained radial force, low drag preserves momentum, and shotgun recoil creates another deliberate way to change direction.',
-    caption:'Scene assets from the original GameMaker project, combining its far, middle and foreground layers.',
+    caption:'Original GameMaker build · Three original rooms · Mouse and keyboard.',
     points:[['Tune pull and inertia separately','Sustained pull changes radial velocity while releasing the hook preserves tangential momentum, producing a continuous swing rather than instant snapping.'],['Treat shots as movement resources','Each shot applies an opposing velocity impulse. Two shells make firing time matter to both encounters and traversal.'],['Reload through a gesture','After both shots, an upward mouse flick triggers a spinning reload. The original debug interface exposes speed, acceleration and rope direction for tuning.']],
     images:[],
-    notes:'The original GameMaker prototype loops through Room1, Room2 and Room3. It uses step-based physics and precise collision masks. This presentation shows source scene assets and the verified movement mechanics. The original authorship of all scene assets has not been fully documented.'
+    notes:'This playable build is exported directly from the original GameMaker project. It retains the Room1 → Room2 → Room3 loop, pixel scenes, precise collisions, grapple, shotgun recoil and flick reloading. The website adds bilingual controls, loading, pause and full-screen access; the original gameplay and debug overlay are preserved. Authorship of all scene assets has not been fully documented.'
   },
   {
     name:'UniGeo', english:'Adapting foundation features to geometry', category:'COMPUTATIONAL VISION / FEATURE ADAPTATION',

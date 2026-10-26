@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#f3f1eb">
+  <title>Grapple & Recoil — GameMaker Original</title>
+  <link rel="icon" href="../favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="game.css">
+  <script src="../i18n.js"></script>
+  <script src="game.js" defer></script>
+</head>
+<body>
+  <header class="game-header"><a id="back-link" href="../#project-grapple" data-copy="back">← Back to works</a><span>GRAPPLE & RECOIL</span><div class="language-switch" role="group" aria-label="Language / 语言"><button type="button" data-language="en" lang="en">EN</button><span>/</span><button type="button" data-language="zh" lang="zh-CN">中文</button></div></header>
+  <main class="play-shell">
+    <div class="game-toolbar"><span class="edition" data-copy="edition">GameMaker original</span><div><button type="button" id="help-button" data-copy="controls">Controls</button><button type="button" id="pause-button" data-copy="pause" disabled>Pause</button><button type="button" id="restart-button" data-copy="restart" disabled>Restart</button><button type="button" id="fullscreen-button" data-copy="fullscreen">Full screen ↗</button></div></div>
+    <div class="screen">
+      <section class="intro" id="intro" aria-labelledby="intro-title">
+        <div class="intro-art" aria-hidden="true"><img src="../assets/grapple-SprBgFar.webp" alt=""><img src="../assets/grapple-SprBgMid.webp" alt=""><img src="../assets/grapple-SprBgNear.webp" alt=""><span>01 — 03 / ORIGINAL ROOMS</span></div>
+        <div class="intro-copy"><span class="eyebrow">A STUDY IN MOMENTUM</span><h1 id="intro-title" data-copy="title">Grapple<br>& Recoil.</h1><p class="intro-description" data-copy="intro">Swing, let go, and turn shotgun recoil into movement.</p><div class="short-controls"><p><kbd data-copy="right-mouse">RIGHT MOUSE</kbd><span data-copy="grapple">Hold to grapple · release to detach</span></p><p><kbd data-copy="left-mouse">LEFT MOUSE</kbd><span data-copy="fire">Fire a shotgun blast</span></p><p><kbd>A / D</kbd><span data-copy="steer">Steer in the air</span></p><p><kbd>↑</kbd><span data-copy="reload">Out of shells? Flick the mouse upward to reload.</span></p></div><button class="start-button" type="button" id="start-button"><span data-copy="start">Play original</span><span aria-hidden="true">→</span></button><p class="device-note" data-copy="device">Best played on a computer with a mouse. R returns you to the room entrance.</p></div>
+      </section>
+      <div id="engine-mount" class="engine-mount"></div>
+      <div class="loading-state" id="loading-state" hidden><span class="loading-mark" aria-hidden="true">✳</span><p id="loading-text" role="status" data-copy="loading">Loading the original game…</p></div>
+      <div class="error-state" id="error-state" hidden><h2 data-copy="error-title">The game could not start.</h2><p data-copy="error-body">Please retry, or open the game in a current desktop browser.</p><button type="button" id="retry-button" data-copy="retry">Try again</button></div>
+    </div>
+  </main>
+  <dialog id="help-dialog" aria-labelledby="help-title"><div class="help-heading"><h2 id="help-title" data-copy="controls">Controls</h2><button type="button" id="close-help" data-copy="close">Close ×</button></div><dl><dt data-copy="right-mouse">RIGHT MOUSE</dt><dd data-copy="grapple">Hold to grapple · release to detach</dd><dt data-copy="left-mouse">LEFT MOUSE</dt><dd data-copy="fire">Fire a shotgun blast</dd><dt>A / D · ← / →</dt><dd data-copy="steer">Steer in the air</dd><dt data-copy="mouse-up">MOUSE ↑</dt><dd data-copy="reload">Out of shells? Flick the mouse upward to reload.</dd><dt>R</dt><dd data-copy="respawn">Return to the current room entrance</dd></dl><p class="help-note" data-copy="help-note">The original prototype has three connected rooms. Reach an exit to enter the next. Its debug overlay shows velocity, acceleration and rope forces.</p></dialog>
+</body>
+</html>
