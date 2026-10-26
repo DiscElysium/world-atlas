@@ -1,10 +1,10 @@
 import {ATELIER_DAYLIGHT} from './daylight-rig.js';
 import * as THREE from './vendor/three.module.js';
-import {PortfolioWorld} from './portfolio-world.js';
+import {PortfolioWorld} from './portfolio-world.js?v=8f12d970b90a';
 import {smooth} from './map-model.mjs';
 import {loadAtelier,AtelierChapter,createAtelierConnector} from './atelier-chapter.js';
 import {journeyTone} from './journey-tone.js';
-import {cameraInfluence} from './reference-scenes.js';
+import {cameraInfluence} from './reference-scenes.js?v=8f12d970b90a';
 import {smoother} from './atlas/atelier-composition.js';
 import {applyProjection,connectPose} from './atlas-motion.js';
 import {AtlasMaterialization} from './atlas-materialization.js';

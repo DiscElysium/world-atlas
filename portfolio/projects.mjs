@@ -33,7 +33,7 @@ export const PROJECTS = [
     website:'https://discelysium.github.io/space/portfolio/',
     intro:'把自动化工厂，装进一艘飞船。', tags:'模块甲板 · 自动物流 · 航行采集', accent:'#276db3', ink:'#142950', ground:'#0a1931',
     palette:['#27395d','#364c7a','#1c2c4d','#43557d'], concept:'space-reference.png',
-    artwork:'space-overview.webp',artworkCaption:'SPACE · 项目总览',
+    artwork:'engine-runtime.png',artworkCaption:'SPACE · 游戏实机',
     crop:[[801,278],[1439,320],[1454,704],[763,664]],
     summary:'亲手搭建飞船上的自动化产线，驾驶它采集与作战。重组模块甲板，让矿物经过物流、加工与科研系统，逐步扩建移动工厂。',
     details:[['移动工厂','甲板、推进器与整船物理共同决定航行；工厂随船移动，与外部资源发生关系。'],['物流与生产','采矿激光、传送带、分流器、熔炉和仓储组成可运行的生产链。'],['系统','Godot；模块建设、资源守恒、加工科研、战斗维修、存档与分章教程。']],

@@ -1,6 +1,6 @@
 import * as THREE from './vendor/three.module.js';
-import {translate} from './i18n.mjs';
-import {PROJECTS} from './projects.mjs';
+import {translate} from './i18n.mjs?v=8f12d970b90a';
+import {PROJECTS} from './projects.mjs?v=8f12d970b90a';
 import {removePrintedRegion} from './space-identity.js';
 
 function print(text,width,depth,color,size=.8){

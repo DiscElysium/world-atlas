@@ -1,11 +1,11 @@
-import {PROJECTS as SOURCE_PROJECTS,STEP,imageURL} from './projects.mjs';
-import {LANGUAGE_KEY,resolveLanguage,localizedProject,translate,navName} from './i18n.mjs';
-import {PortfolioWorld} from './portfolio-world.js';
+import {PROJECTS as SOURCE_PROJECTS,STEP,imageURL} from './projects.mjs?v=8f12d970b90a';
+import {LANGUAGE_KEY,resolveLanguage,localizedProject,translate,navName} from './i18n.mjs?v=8f12d970b90a';
+import {PortfolioWorld} from './portfolio-world.js?v=8f12d970b90a';
 import {copyCanvas,buttonCanvas,loadArtwork} from './content.js';
 import * as THREE from 'three';
 import {loadGoldfishTextures} from './goldfish/assets.js';
 import {createEmbeddedJourney} from './embedded-journey.js';
-import {AtlasWorld} from './atlas-world.js';
+import {AtlasWorld} from './atlas-world.js?v=8f12d970b90a';
 import {createAtlasLoader} from './atlas-loader.js';
 const unified=document.body.classList.contains('unified-atlas'),atlasLoader=unified?createAtlasLoader(THREE):null;
 let savedLanguage;try{savedLanguage=localStorage.getItem(LANGUAGE_KEY);}catch{}

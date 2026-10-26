@@ -37,7 +37,7 @@ export class ReferenceScenes{
     loader.loadAsync(new URL('./otherworks/otherworks.glb',import.meta.url).href),
     fetch(new URL('./otherworks/rigid-body-motion.json',import.meta.url)).then(r=>{if(!r.ok)throw Error('Photo motion unavailable');return r.json();}),
     fetch(new URL('./otherworks/portrait-motion.json',import.meta.url)).then(r=>{if(!r.ok)throw Error('Portrait photo motion unavailable');return r.json();}),
-    new THREE.TextureLoader().loadAsync(new URL('./assets/projects/space-overview.webp',import.meta.url).href)
+    new THREE.TextureLoader().loadAsync(new URL('./assets/projects/engine-runtime.png',import.meta.url).href)
    ]);this.createTennis(tennis);this.createSpace(space,spaceArtwork);this.views.set('otherworks',createOtherworksView(otherworks,motion,portraitMotion));
   }finally{draco.dispose();}
  }
@@ -83,10 +83,10 @@ export class ReferenceScenes{
   button.rotation.y=a;button.name='Engine project button';button.userData.action={id:'engine',kind:'project'};group.add(button);
   const art=gltf.scene.getObjectByName('Artwork_Display__project_art');if(art)art.userData.action={id:'engine',kind:'art'};
   if(art&&spaceArtwork){
-   spaceArtwork.colorSpace=THREE.SRGBColorSpace;spaceArtwork.flipY=false;spaceArtwork.anisotropy=8;art.material=art.material.clone();art.material.map=spaceArtwork;art.material.color.set('#ffffff');art.material.userData.displayArtwork='space-overview.webp';
-   const fit=(15.9/8.92)/(spaceArtwork.image.width/spaceArtwork.image.height);
-   art.material.onBeforeCompile=shader=>{shader.fragmentShader=shader.fragmentShader.replace('#include <map_fragment>',`\n#ifdef USE_MAP\nvec2 spacePrintUV=vMapUv;spacePrintUV.y=(spacePrintUV.y-.5)/${fit.toFixed(8)}+.5;vec4 spacePrint=texture2D(map,spacePrintUV);float inside=step(0.,spacePrintUV.y)*step(spacePrintUV.y,1.);diffuseColor*=mix(vec4(.002,.004,.014,1.),spacePrint,inside);\n#endif\n`);};
-   art.material.customProgramCacheKey=()=> 'space-poster-contain-v1';art.material.userData.artworkFit='contain';
+   spaceArtwork.colorSpace=THREE.SRGBColorSpace;spaceArtwork.flipY=false;spaceArtwork.anisotropy=8;art.material=art.material.clone();art.material.map=spaceArtwork;art.material.color.set('#ffffff');art.material.userData.displayArtwork='engine-runtime.png';
+   const displayAspect=15.9/8.92,imageAspect=spaceArtwork.image.width/spaceArtwork.image.height,fitX=Math.min(1,imageAspect/displayAspect),fitY=Math.min(1,displayAspect/imageAspect);
+   art.material.onBeforeCompile=shader=>{shader.fragmentShader=shader.fragmentShader.replace('#include <map_fragment>',`\n#ifdef USE_MAP\nvec2 spacePrintUV=(vMapUv-.5)/vec2(${fitX.toFixed(8)},${fitY.toFixed(8)})+.5;vec4 spacePrint=texture2D(map,spacePrintUV);float inside=step(0.,spacePrintUV.x)*step(spacePrintUV.x,1.)*step(0.,spacePrintUV.y)*step(spacePrintUV.y,1.);diffuseColor*=mix(vec4(.002,.004,.014,1.),spacePrint,inside);\n#endif\n`);};
+   art.material.customProgramCacheKey=()=> 'space-gameplay-contain-v2';art.material.userData.artworkFit='contain';art.material.userData.imageAspect=imageAspect;art.material.userData.displayFit=[fitX,fitY];
   }
   const pitch=Math.atan2(1,.155),camera=new THREE.PerspectiveCamera(32,1,.5,340);camera.up.set(0,0,-1);camera.position.set(0,Math.sin(pitch),Math.cos(pitch));camera.lookAt(0,0,0);
   this.views.set('engine',{id:'engine',group,model:gltf.scene,focus:new THREE.Vector3(),yaw:0,scale:MAP_WIDTH/40.4,fov:32,pitch,orientation:camera.quaternion.clone(),interactive:[button,...(art?[art]:[])]});

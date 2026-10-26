@@ -2,7 +2,7 @@ import * as THREE from './vendor/three.module.js';
 import {layout,PITCH,groundPoint} from './map-model.mjs';
 import {modelKit} from './model-kit.js';
 import {sceneGround} from './terrain.mjs';
-import {PROJECTS} from './projects.mjs';
+import {PROJECTS} from './projects.mjs?v=8f12d970b90a';
 import {buildTennis,TENNIS_MODULES} from './scene-tennis.js';
 import {buildTennisGround} from './tennis-ground.js';
 import {createTennisPortrait} from './tennis-portrait.js';

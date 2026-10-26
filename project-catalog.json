@@ -276,7 +276,8 @@
         }
       },
       "slug": "space",
-      "artwork": "space-overview.webp"
+      "artwork": "engine-runtime.png",
+      "artworkCaption": "SPACE · 游戏实机"
     },
     {
       "id": "goldfish",
