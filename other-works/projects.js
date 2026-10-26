@@ -2,6 +2,7 @@ window.WORKS = [
   {
     id:'metabolic', number:'01', name:'代谢拓扑', english:'Metabolic Topology', category:'感知与表达 / INFORMATION DESIGN',
     hook:'让日常习惯，长成一个可见的生态。', tags:['2026','交互可视化','D3.js / HTML / CSS / JavaScript'],
+    url:'https://discelysium.github.io/metabolic-topology/',
     summary:'围绕个人饮食与训练记录，把身体视为一个不断变化的生态。输入不只改变当天的数字，也会成为留到次日的粒子、可以回看的日历，以及缓慢向上的成长山脉。',
     video:'metabolic-film.mp4', poster:'metabolic-screen.webp', caption:'原项目操作录屏摘录 · 原片 40–110 秒 · 已裁去浏览器栏并静音。',
     points:[['让关系可见','五色环对应饮食分类，四个肌群节点随训练和疲劳变化。同一套颜色连接输入、反馈与回顾。'],['让行为留下痕迹','溢出粒子能够跨天保存，并通过训练消耗。一次操作的后果进入了后续的体验。'],['让积累成为旅程','日历保留每天的切片，累计训练时长映射为山坡上的旗帜，把长期目标转成可感知的进程。']],
@@ -39,10 +40,10 @@ window.WORKS = [
     id:'grapple',number:'05',name:'钩锁与霰弹',english:'Grapple & Recoil',category:'规则与交互 / GAME FEEL & PHYSICS',
     hook:'把后坐力，变成移动的可能。',tags:['2026','GameMaker / GML','运动机制原型'],
     summary:'围绕“拉近、甩出、反冲”研究连续运动的手感。钩锁提供持续径向牵引，低阻力保留惯性，霰弹后坐力又为运动增加一次主动改变方向的机会。',
-    demo:'grapple',caption:'交互机制示意：依据原 GML 参数绘制，演示单次受力差异，不是原引擎实录。',
+    originalScene:true,caption:'GameMaker 原工程场景素材 · 远景、中景与前景图层组合展示。',
     points:[['牵引与惯性分开调节','持续拉力改变径向速度，松钩后仍保留切向动量，形成连续摆荡而非瞬间吸附。'],['射击也是位移资源','每次霰弹施加反向速度脉冲，两发弹容量让开火时机同时影响战斗和路线。'],['用动作完成换弹','空枪后通过鼠标上甩触发旋转换弹。调试界面显示速度、加速度与绳向，帮助观察参数变化。']],
     images:[],
-    notes:'原作是三房间循环的 GameMaker 机制原型，采用手写逐步物理，未开启引擎物理世界。这里的演示仅提炼持续拉力 0.80、重力 0.38、阻力 0.001 和后坐速度脉冲 15；不复现完整碰撞、枪械和关卡。卡片使用原工程已有场景素材加机制标注，素材原创归属尚未核实。此前另做的《归潮》网页改编不纳入本作品成果。'
+    notes:'原作是 Room1 → Room2 → Room3 循环的 GameMaker 机制原型，采用逐步物理与精确碰撞蒙版。此处展示原工程场景素材和已核对的运动机制；场景素材的原创归属尚未完整核实。'
   },
   {
     id:'unigeo',number:'06',name:'UniGeo',english:'基础模型的几何适配',category:'视觉研究 / FEATURE ADAPTATION',
