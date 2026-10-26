@@ -1,0 +1,216 @@
+{
+  "date": "2026-10-02",
+  "units": "meter",
+  "source": "../output/engine-deep-space-2026-10-02/engine-deep-space-v1.png",
+  "coordinate_system": "Blender XY plane, Z up; no terrestrial floor",
+  "build_order": [
+    "independent devices",
+    "independent subscenes",
+    "reference-matched assembly"
+  ],
+  "assets": {
+    "conveyor": {
+      "label": "传送带直段",
+      "objects": 12,
+      "blend": "conveyor.blend",
+      "glb": "conveyor.glb"
+    },
+    "cargo": {
+      "label": "铁矿货包",
+      "objects": 2,
+      "blend": "cargo.blend",
+      "glb": "cargo.glb"
+    },
+    "furnace": {
+      "label": "加工熔炉",
+      "objects": 39,
+      "blend": "furnace.blend",
+      "glb": "furnace.glb"
+    },
+    "storage": {
+      "label": "物流储存柜",
+      "objects": 29,
+      "blend": "storage.blend",
+      "glb": "storage.glb"
+    },
+    "laser": {
+      "label": "采矿激光",
+      "objects": 20,
+      "blend": "laser.blend",
+      "glb": "laser.glb"
+    },
+    "research": {
+      "label": "科研装置",
+      "objects": 19,
+      "blend": "research.blend",
+      "glb": "research.glb"
+    },
+    "splitter": {
+      "label": "分流器",
+      "objects": 6,
+      "blend": "splitter.blend",
+      "glb": "splitter.glb"
+    },
+    "dish": {
+      "label": "通信天线",
+      "objects": 5,
+      "blend": "dish.blend",
+      "glb": "dish.glb"
+    },
+    "thruster": {
+      "label": "主推进器",
+      "objects": 21,
+      "blend": "thruster.blend",
+      "glb": "thruster.glb"
+    },
+    "03_factory_ship": {
+      "label": "模块飞船与自动化产线",
+      "objects": 775,
+      "blend": "03_factory_ship.blend",
+      "glb": "03_factory_ship.glb"
+    },
+    "01_information_wing": {
+      "label": "文字甲板与大按钮",
+      "objects": 275,
+      "blend": "01_information_wing.blend",
+      "glb": "01_information_wing.glb"
+    },
+    "02_artwork_display": {
+      "label": "作品印刷面与悬浮机械框",
+      "objects": 222,
+      "blend": "02_artwork_display.blend",
+      "glb": "02_artwork_display.glb"
+    },
+    "04_crystal_asteroid": {
+      "label": "矿簇陨石地形",
+      "objects": 66,
+      "blend": "04_crystal_asteroid.blend",
+      "glb": "04_crystal_asteroid.glb"
+    },
+    "05_docking_network": {
+      "label": "悬空装卸桥与采矿支线",
+      "objects": 360,
+      "blend": "05_docking_network.blend",
+      "glb": "05_docking_network.glb"
+    },
+    "06_depth_asteroids": {
+      "label": "远景漂浮陨石",
+      "objects": 4,
+      "blend": "06_depth_asteroids.blend",
+      "glb": "06_depth_asteroids.glb"
+    },
+    "08_distant_planet": {
+      "label": "巨大冰蓝星球与大气层",
+      "objects": 2,
+      "blend": "08_distant_planet.blend",
+      "glb": "08_distant_planet.glb"
+    },
+    "09_foreground_asteroid": {
+      "label": "近镜头的精细晶体陨石",
+      "objects": 203,
+      "blend": "09_foreground_asteroid.blend",
+      "glb": "09_foreground_asteroid.glb"
+    }
+  },
+  "assembly": [
+    {
+      "asset": "01_information_wing",
+      "node": "Information_Wing",
+      "position": [
+        -8.65,
+        -0.7,
+        0.55
+      ],
+      "rotation_z": -0.05,
+      "scale": 1
+    },
+    {
+      "asset": "02_artwork_display",
+      "node": "Artwork_Display",
+      "position": [
+        6.98,
+        -1.32,
+        0.98
+      ],
+      "rotation_z": -0.075,
+      "scale": 1
+    },
+    {
+      "asset": "03_factory_ship",
+      "node": "Factory_Ship",
+      "position": [
+        6.9,
+        7.2,
+        1.22
+      ],
+      "rotation_z": -0.045,
+      "scale": 1
+    },
+    {
+      "asset": "04_crystal_asteroid",
+      "node": "Crystal_Asteroid",
+      "position": [
+        -10.45,
+        7.2,
+        -0.28
+      ],
+      "rotation_z": -0.3,
+      "scale": 1
+    },
+    {
+      "asset": "05_docking_network",
+      "node": "Docking_Network",
+      "position": [
+        0,
+        0,
+        0
+      ],
+      "rotation_z": 0,
+      "scale": 1
+    },
+    {
+      "asset": "06_depth_asteroids",
+      "node": "Depth_Asteroids",
+      "position": [
+        0,
+        0,
+        0
+      ],
+      "rotation_z": 0,
+      "scale": 1
+    },
+    {
+      "asset": "08_distant_planet",
+      "node": "Distant_Planet",
+      "position": [
+        20,
+        -22,
+        -58
+      ],
+      "rotation_z": 0,
+      "scale": 1
+    },
+    {
+      "asset": "09_foreground_asteroid",
+      "node": "Foreground_Mineral_Outcrop",
+      "position": [
+        -9.8,
+        -10.5,
+        20.5
+      ],
+      "rotation_z": -0.1,
+      "scale": 1
+    }
+  ],
+  "objects": 2407,
+  "triangles": 105696,
+  "cameras": {
+    "composition": "perspective, approximately 81.2° overhead",
+    "top": "exact top, orthographic composition audit"
+  },
+  "artwork": "Only the portfolio print uses an image texture; outside objects and all text are actual geometry.",
+  "files": {
+    "editable": "models/engine-assembled.blend",
+    "web": "models/engine-assembled.glb"
+  }
+}

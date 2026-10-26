@@ -1,0 +1,9 @@
+{
+  "version": 3,
+  "reference": "../assets/flow/approved-reference-v3.png",
+  "source": "island2 / AERIE-647",
+  "heightfield": "513x289 uint16, Y=-4+u16/65535*24; western shoulder art pass; water/reading constraints retained",
+  "coordinates": "100 x 56.25, transformed at 0.4 scale",
+  "authored_instances": 489,
+  "river_samples": 337
+}

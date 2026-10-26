@@ -1,0 +1,27 @@
+body.unified-atlas{background:#faf9f6}
+#atlas-scroll-cue{position:absolute;left:50%;bottom:calc(32px + env(safe-area-inset-bottom,0px));transform:translateX(-50%);z-index:6;display:flex;flex-direction:column;align-items:center;gap:13px;min-height:64px;padding:10px 22px 6px;border:0;background:transparent;color:#52666b;font:11px/1.5 Arial,"Microsoft YaHei",sans-serif;letter-spacing:.15em;white-space:nowrap;transition:opacity .18s linear}
+#atlas-scroll-cue[hidden]{display:none}
+#atlas-scroll-cue i{display:block;width:7px;height:21px;position:relative;border-left:1px solid currentColor;opacity:.7}
+#atlas-scroll-cue i::after{content:'';position:absolute;bottom:0;left:-4px;width:6px;height:6px;border-right:1px solid currentColor;border-bottom:1px solid currentColor;transform:rotate(45deg)}
+#atlas-scroll-cue:hover{color:#243e43}
+@media(max-width:700px){#atlas-scroll-cue{bottom:calc(25px + env(safe-area-inset-bottom,0px));font-size:10px;gap:10px}}
+.unified-atlas .map-page{position:fixed;top:0;left:0;height:100svh;width:100%;}
+.unified-atlas .scroll-journey{pointer-events:none}
+.unified-atlas .map-page{pointer-events:auto}
+.unified-atlas #world{touch-action:pan-y}
+.unified-atlas #world canvas{transition:none}
+#atlas-loader{--loaded:0;position:fixed;inset:0;z-index:1000;background:#faf9f6;transition:opacity .2s;pointer-events:auto}
+#atlas-loader.loaded{opacity:0;pointer-events:none}
+#atlas-loader[hidden]{display:none}
+.load-word{position:absolute;inset:0;width:100%;height:100%;overflow:visible}
+#loader-fill-window{transition:width .12s linear}
+#atlas-loader.is-ready .load-outline{opacity:0}
+.load-number{position:absolute;left:50%;top:calc(50% + min(9vw,15vh));transform:translateX(-50%);font:10px Arial,sans-serif;letter-spacing:.12em;color:#7f8f8f}
+.unified-atlas[data-atlas-phase="cover"] .top-controls,.unified-atlas[data-atlas-phase="drawing"] .top-controls,.unified-atlas[data-atlas-phase="complete-draft"] .top-controls,.unified-atlas[data-atlas-phase="emergence"] .top-controls,.unified-atlas:not([data-atlas-phase="works"]) .site-mark,.unified-atlas:not([data-atlas-phase="works"]) #scroll-hint{visibility:hidden}
+.unified-atlas[data-atlas-phase="cover"] #project-nav,.unified-atlas[data-atlas-phase="drawing"] #project-nav,.unified-atlas[data-atlas-phase="complete-draft"] #project-nav,.unified-atlas[data-atlas-phase="emergence"] #project-nav{visibility:hidden;pointer-events:none}
+#atlas-back{position:fixed;top:23px;left:24px;z-index:5;background:#ffffffe8;border:1px solid #bdc5bf;padding:8px 12px;font:11px Arial,"Microsoft YaHei",sans-serif;color:#344b51;cursor:pointer}
+.unified-atlas:not([data-atlas-phase="works"]) #atlas-back{display:none}
+.unified-atlas .site-mark{left:145px}
+.unified-atlas .folio-intro-controls,.unified-atlas .folio-intro-caption{display:none}
+@media(max-width:700px){#atlas-back{left:14px;top:15px;padding:8px 10px}.unified-atlas .site-mark{display:none}}
+@media(prefers-reduced-motion:reduce){#atlas-loader,#loader-fill-window{transition:none}}

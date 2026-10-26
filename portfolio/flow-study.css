@@ -1,0 +1,9 @@
+@import url('./tennis-study.css');
+:root{background:#dedec7;color:#556a5b}
+.study-toolbar button[aria-pressed=true],.view-options button[aria-pressed=true]{color:#49664e;background:#ecebd4}
+button:focus-visible,a:focus-visible{outline-color:#49664e}
+nav{max-width:min(1090px,75vw);overflow-x:auto;scrollbar-width:thin}
+.study-toolbar button{font-size:13px;padding:9px 11px}
+#study-download{background:#49664e}
+#study-status:empty{display:none}
+@media(max-width:1250px){.study-toolbar{width:calc(100% - 28px);flex-direction:column;bottom:16px}nav{max-width:100%;overflow-x:auto;flex-shrink:0}.study-note{bottom:143px}}

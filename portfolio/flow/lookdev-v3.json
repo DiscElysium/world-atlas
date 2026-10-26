@@ -1,0 +1,40 @@
+{
+  "reference": "../assets/flow/approved-reference-v3.png",
+  "iterations": [
+    "v3 terrain + neutral tone mapping",
+    "reduced direct light and increased soft fill",
+    "western shoulder sculpt and broad bank ecology",
+    "rock albedo calibration and graduated water",
+    "30 degree perspective camera, 76 degree pitch and desktop/mobile registration"
+  ],
+  "terrain_color": "continuous vertex RGB blending; height + slope + river moisture + blurred reading coverage; no categorical material bands",
+  "lighting": {
+    "sky": 2.3,
+    "sun": 0.85,
+    "fill": 0.42,
+    "exposure": 1.08,
+    "tone_mapping": "NeutralToneMapping"
+  },
+  "measured_reading_rgb": {
+    "actual": [
+      238,
+      235,
+      220
+    ],
+    "reference": [
+      242,
+      236,
+      225
+    ],
+    "note": "median of a small reading floor patch; approximate color check, not a pixel-perfect reconstruction"
+  },
+  "validation": [
+    "shared terrain edges",
+    "continuous downhill river",
+    "flat content footprints",
+    "continuous material color transitions",
+    "desktop/mobile layouts",
+    "real scene content and direct raycast clicks"
+  ],
+  "scope": "Real WebGL model and shaders. Single-photo artistic reconstruction, not an exact scan."
+}

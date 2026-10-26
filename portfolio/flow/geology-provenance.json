@@ -1,0 +1,17 @@
+{
+  "version": 8,
+  "sourceProject": "FLOW — Island II",
+  "measuredReference": "engine/landform/reference/FitzRoyTerrain.ts",
+  "grid": 257,
+  "rangeMeters": [
+    486,
+    2876
+  ],
+  "mainPeakUV": [
+    0.4765625,
+    0.51953125
+  ],
+  "method": "Reference-composed summit silhouettes, bounded measured bedrock erosion; smooth fourth-power foothill union; protected main apex; river incision; adaptive error-bounded triangulation; one material color per triangle.",
+  "triangulator": "Island II AdaptiveTerrainMesh / Mapbox Delatin (ISC)",
+  "attribution": "See TERRAIN_DATA.md and DELATIN_LICENSE.txt"
+}

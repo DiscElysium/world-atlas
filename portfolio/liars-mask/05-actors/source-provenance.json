@@ -1,0 +1,25 @@
+{
+  "source": "D:\\wang\\portfolio\\gamejam\\gamejamFinal\\Assets\\model",
+  "models": [
+    "sit.obj",
+    "MASK2.obj"
+  ],
+  "conversion": "OBJ polygon fan triangulation, flat normals computed at runtime; no new external asset",
+  "derivedEyeBoundaries": [
+    {
+      "center": [
+        -5.577980888888889,
+        5.498798666666667
+      ],
+      "vertices": 9
+    },
+    {
+      "center": [
+        5.577980888888889,
+        5.498801111111111
+      ],
+      "vertices": 9
+    }
+  ],
+  "derivedGeometry": "Two dark recessed eye caps and inner rim walls follow the exact source boundaries. Body proportions and skull clearance are adjusted in the modeling module."
+}
