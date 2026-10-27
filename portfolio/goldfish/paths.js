@@ -1,4 +1,4 @@
-import {goldfishHeight,GOLD_COLORS as C} from './plan.mjs?v=03bcba9148dc';
+import {goldfishHeight,GOLD_COLORS as C} from './plan.mjs?v=eed7fff475f6';
 
 function bridge(f,p,parent,b,index){
  const g=f.group('Footbridge '+index+' / deck, joists, posts, rope rails',parent);g.position.set(b.x,b.y,b.z);g.rotation.y=b.angle;

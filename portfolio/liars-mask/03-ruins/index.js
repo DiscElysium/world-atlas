@@ -1,8 +1,8 @@
 import * as THREE from '../../vendor/three.module.js';
-import {stoneGeometry,mergeMeshes} from '../geometry.js?v=03bcba9148dc';
-import {surfaceHeightAt} from '../01-foundation/index.js?v=03bcba9148dc';
-import {buildMask} from '../05-actors/index.js?v=03bcba9148dc';
-import {PORTICO} from '../layout.mjs?v=03bcba9148dc';
+import {stoneGeometry,mergeMeshes} from '../geometry.js?v=eed7fff475f6';
+import {surfaceHeightAt} from '../01-foundation/index.js?v=eed7fff475f6';
+import {buildMask} from '../05-actors/index.js?v=eed7fff475f6';
+import {PORTICO} from '../layout.mjs?v=eed7fff475f6';
 
 export function columnShaft(radius,height,broken=false){
  const p=[],segments=48;

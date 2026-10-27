@@ -1,5 +1,5 @@
 import * as THREE from 'three';
-import {groundPoint,screenPoint,CONTENT_HEIGHT,seeded,whiteMask,heightAt} from './map-model.mjs?v=03bcba9148dc';
+import {groundPoint,screenPoint,CONTENT_HEIGHT,seeded,whiteMask,heightAt} from './map-model.mjs?v=eed7fff475f6';
 const materials=new Map();
 const SCENERY_SCALE=.72;
 function overlapsContent(u,v,size,ground,L){

@@ -1,6 +1,6 @@
 // One sampled landscape for the sea floor, sand slopes, inland relief and
 // inhabited clearings. Props query the same triangles that are rendered.
-import {coastDistance,polygonDistance,smooth,clamp,hash,stairHeight} from './plan.mjs?v=03bcba9148dc';
+import {coastDistance,polygonDistance,smooth,clamp,hash,stairHeight} from './plan.mjs?v=eed7fff475f6';
 
 const fields=new WeakMap();
 function rectangleDistance(x,z,q){

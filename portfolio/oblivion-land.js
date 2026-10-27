@@ -1,5 +1,5 @@
 import * as THREE from './vendor/three.module.js';
-import {oblivionTopology} from './oblivion-topology.mjs?v=03bcba9148dc';
+import {oblivionTopology} from './oblivion-topology.mjs?v=eed7fff475f6';
 
 export function createOblivionLand(L,span){
  const topology=oblivionTopology(L,span),geometry=new THREE.BufferGeometry(),colors=[];

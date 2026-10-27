@@ -1,4 +1,4 @@
-import {DRAFT_TITLE,makeTitleBitmap} from './atelier-composition.js?v=03bcba9148dc';
+import {DRAFT_TITLE,makeTitleBitmap} from './atelier-composition.js?v=eed7fff475f6';
 // The directory is also an authored working sheet: geometry provides the
 // measured plan; a separate editorial layer explains each world's idea.
 const make=(w,h)=>{const c=document.createElement('canvas');c.width=w;c.height=h;return c;};

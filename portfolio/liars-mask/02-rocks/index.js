@@ -1,5 +1,5 @@
-import {stoneGeometry,seeded,mergeMeshes} from '../geometry.js?v=03bcba9148dc';
-import {floorHeightAt,surfaceHeightAt} from '../01-foundation/index.js?v=03bcba9148dc';
+import {stoneGeometry,seeded,mergeMeshes} from '../geometry.js?v=eed7fff475f6';
+import {floorHeightAt,surfaceHeightAt} from '../01-foundation/index.js?v=eed7fff475f6';
 
 // Authored silhouettes: the master image has tall fractured slabs behind the
 // table and low cropped front outcrops, not a ring of uniform pebble spheres.

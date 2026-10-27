@@ -1,6 +1,6 @@
 import * as THREE from '../vendor/three.module.js';
-import {designDraft} from './portfolio-draft.js?v=03bcba9148dc';
-import {WORKTOP_VIEW} from './atelier-composition.js?v=03bcba9148dc';
+import {designDraft} from './portfolio-draft.js?v=eed7fff475f6';
+import {WORKTOP_VIEW} from './atelier-composition.js?v=eed7fff475f6';
 
 // Measured plans come from the loaded geometry; the paper also carries an
 // authored editorial layer. Native modelling releases remain unchanged.

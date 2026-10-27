@@ -1,8 +1,8 @@
 import * as THREE from './vendor/three.module.js';
-import {seeded} from './map-model.mjs?v=03bcba9148dc';
-import {tennisWorldHeight,courtPoint,routeDistance} from './tennis-layout.mjs?v=03bcba9148dc';
-import {TENNIS_COLORS as C} from './tennis-forms.js?v=03bcba9148dc';
-import {chalkMass,chalkOutcrop} from './tennis-geology.js?v=03bcba9148dc';
+import {seeded} from './map-model.mjs?v=eed7fff475f6';
+import {tennisWorldHeight,courtPoint,routeDistance} from './tennis-layout.mjs?v=eed7fff475f6';
+import {TENNIS_COLORS as C} from './tennis-forms.js?v=eed7fff475f6';
+import {chalkMass,chalkOutcrop} from './tennis-geology.js?v=eed7fff475f6';
 function road(f,points,width,y,parent,color=C.blue){
  const curve=new THREE.CatmullRomCurve3(points.map(([x,z])=>new THREE.Vector3(x,y,z))),positions=[],indices=[];
  for(let i=0;i<=45;i++){const p=curve.getPoint(i/45),d=curve.getTangent(i/45),side=new THREE.Vector3(d.z,0,-d.x).normalize();for(const sign of [-1,1])positions.push(p.x+side.x*width*.5*sign,y,p.z+side.z*width*.5*sign);if(i<45){const a=i*2;indices.push(a,a+1,a+2,a+1,a+3,a+2)}}

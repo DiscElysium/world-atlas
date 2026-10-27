@@ -1,6 +1,6 @@
 import * as THREE from '../vendor/three.module.js';
-import {coastX,goldfishHeight} from './plan.mjs?v=03bcba9148dc';
-import {collageMaterial,PALETTE_CHANNELS} from './palette.js?v=03bcba9148dc';
+import {coastX,goldfishHeight} from './plan.mjs?v=eed7fff475f6';
+import {collageMaterial,PALETTE_CHANNELS} from './palette.js?v=eed7fff475f6';
 function surface(parent,name,positions,uvs,texture,options,animate){
  const geo=new THREE.BufferGeometry();geo.setAttribute('position',new THREE.Float32BufferAttribute(positions,3));geo.setAttribute('uv',new THREE.Float32BufferAttribute(uvs,2));geo.computeVertexNormals();
  const mat=collageMaterial(new THREE.MeshStandardMaterial({map:texture,color:'#ffffff',roughness:options.atlas==='water'?.77:1,side:THREE.DoubleSide}),options,animate);

@@ -1,8 +1,8 @@
 import * as THREE from './vendor/three.module.js';
-import {modelKit} from './model-kit.js?v=03bcba9148dc';
-import {buildGoldfish,GOLD_MODULES} from './scene-goldfish.js?v=03bcba9148dc';
-import {buildGoldfishContent} from './goldfish/content.js?v=03bcba9148dc';
-import {loadGoldfishTextures} from './goldfish/assets.js?v=03bcba9148dc';
+import {modelKit} from './model-kit.js?v=eed7fff475f6';
+import {buildGoldfish,GOLD_MODULES} from './scene-goldfish.js?v=eed7fff475f6';
+import {buildGoldfishContent} from './goldfish/content.js?v=eed7fff475f6';
+import {loadGoldfishTextures} from './goldfish/assets.js?v=eed7fff475f6';
 
 const container=document.querySelector('#study-world'),scene=new THREE.Scene(),root=new THREE.Group(),animated=[];scene.background=new THREE.Color('#f1e5cb');scene.add(root);
 const renderer=new THREE.WebGLRenderer({antialias:true,powerPreference:'high-performance'});renderer.setPixelRatio(Math.min(devicePixelRatio,1.75));renderer.outputColorSpace=THREE.SRGBColorSpace;renderer.toneMapping=THREE.ACESFilmicToneMapping;renderer.toneMappingExposure=1.06;renderer.shadowMap.enabled=true;renderer.shadowMap.type=THREE.PCFSoftShadowMap;container.append(renderer.domElement);

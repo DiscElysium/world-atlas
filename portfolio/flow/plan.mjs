@@ -1,5 +1,5 @@
-import {groundPoint,smooth,clamp,seeded} from '../map-model.mjs?v=03bcba9148dc';
-import {sampleFitzRoyElevation,FITZ_ROY_REFERENCE_SIZE} from './measured-geology.mjs?v=03bcba9148dc';
+import {groundPoint,smooth,clamp,seeded} from '../map-model.mjs?v=eed7fff475f6';
+import {sampleFitzRoyElevation,FITZ_ROY_REFERENCE_SIZE} from './measured-geology.mjs?v=eed7fff475f6';
 const FLOW_SOURCE={size:FITZ_ROY_REFERENCE_SIZE,source:'Measured Fitz Roy bedrock / Island II',mainPeakUV:[122/256,133/256],version:8};
 
 // V08: one dominant sculpted massif, measured erosion and connected foothills.

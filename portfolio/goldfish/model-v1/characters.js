@@ -1,6 +1,6 @@
 import * as THREE from '../../vendor/three.module.js';
-import {C} from './plan.mjs?v=03bcba9148dc';
-import {PAPER_SILHOUETTES} from './paper-silhouettes.mjs?v=03bcba9148dc';
+import {C} from './plan.mjs?v=eed7fff475f6';
+import {PAPER_SILHOUETTES} from './paper-silhouettes.mjs?v=eed7fff475f6';
 export function buildCouple(f,p,textures={}){
  const g=f.group('09 · Two paper protagonists on one common stone seat'),q=p.seat;
  for(let i=0;i<3;i++)f.box('Common seat base stone',[q.w/3-.025,q.h-.10,q.d],[q.x-q.w/2+(i+.5)*q.w/3,q.y+(q.h-.10)/2,q.z],i%2?'#d2c4ab':'#dcd0b9',g);

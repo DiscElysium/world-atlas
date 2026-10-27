@@ -1,4 +1,4 @@
-import {prepareTitleBitmaps} from './atlas/atelier-composition.js?v=03bcba9148dc';
+import {prepareTitleBitmaps} from './atlas/atelier-composition.js?v=eed7fff475f6';
 export function createAtlasLoader(THREE){
  const element=document.getElementById('atlas-loader');if(!element)return null;
  const ready=Promise.all([prepareTitleBitmaps(),...element.querySelectorAll('image')].map(e=>{if(e instanceof Promise)return e;const img=new Image();img.src=e.href.baseVal;return img.decode();}));

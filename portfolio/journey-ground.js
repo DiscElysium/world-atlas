@@ -1,5 +1,5 @@
 import * as THREE from './vendor/three.module.js';
-import {smooth} from './map-model.mjs?v=03bcba9148dc';
+import {smooth} from './map-model.mjs?v=eed7fff475f6';
 
 // Close small terrestrial gaps with a shared physical foundation. Space stays open.
 export function createJourneyGround(projects,span){

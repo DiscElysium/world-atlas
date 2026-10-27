@@ -21,6 +21,7 @@ export const PROJECTS = [
   },
   {
     id:'tennis', number:'02', title:'TENNISATOM', name:'身体的肖像', category:'THE PORTRAIT OF THE BODY',
+    website:'https://discelysium.github.io/body-portrait-portfolio/',
     intro:'让运动数据，成为身体的肖像。', tags:'姿态识别 · 运动特效 · 影像叙事', accent:'#ec651a', ink:'#26252b', ground:'#eeeae0',
     palette:['#f8f8f5','#ecece7','#ed711d','#f5f4ee'], concept:'tennisatom-reference.png',
     artwork:'tennis-project-board.jpg', artworkCaption:'身体的肖像 · 产品展板',

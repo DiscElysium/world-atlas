@@ -1,4 +1,4 @@
-import {groundPoint,smooth,whiteMask} from './map-model.mjs?v=03bcba9148dc';
+import {groundPoint,smooth,whiteMask} from './map-model.mjs?v=eed7fff475f6';
 const plans=new WeakMap();
 export function tennisLayout(L){
  if(plans.has(L))return plans.get(L);

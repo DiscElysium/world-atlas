@@ -1,8 +1,8 @@
 import * as THREE from '../vendor/three.module.js';
-import {flowPlan,flowSurface} from './plan.mjs?v=03bcba9148dc';
-import {smooth,seeded} from '../map-model.mjs?v=03bcba9148dc';
-import {FLOW_COLORS as C} from './palette.mjs?v=03bcba9148dc';
-import {rebuildAdaptiveTerrainMesh} from './adaptive-mesh.mjs?v=03bcba9148dc';
+import {flowPlan,flowSurface} from './plan.mjs?v=eed7fff475f6';
+import {smooth,seeded} from '../map-model.mjs?v=eed7fff475f6';
+import {FLOW_COLORS as C} from './palette.mjs?v=eed7fff475f6';
+import {rebuildAdaptiveTerrainMesh} from './adaptive-mesh.mjs?v=eed7fff475f6';
 export const FLOW_TERRAIN_MODULES=[{id:'lowlands',name:'浅色台地'},{id:'massif',name:'主雪峰与肩脊'},{id:'north-ridge',name:'北侧山脊'},{id:'northeast',name:'东北次峰'},{id:'east-rim',name:'东侧岩坡'},{id:'foreland',name:'层叠前景低丘'},{id:'valley',name:'融水河谷'},{id:'coast',name:'海岸浅滩'},{id:'seabed',name:'海床'}];
 const colors=Object.fromEntries(Object.entries(C).filter(([,v])=>typeof v==='string').map(([k,v])=>[k,new THREE.Color(v)]));
 export function flowFaceColor(s,h,slope,x,z){

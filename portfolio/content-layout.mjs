@@ -1,4 +1,4 @@
-import {groundPoint,screenPoint,CONTENT_HEIGHT} from './map-model.mjs?v=03bcba9148dc';
+import {groundPoint,screenPoint,CONTENT_HEIGHT} from './map-model.mjs?v=eed7fff475f6';
 
 // Each content surface is a physical rectangle on the map, rather than a screen quad.
 export function surfaceFrame(rect,L,height=CONTENT_HEIGHT+.04){

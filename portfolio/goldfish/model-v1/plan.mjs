@@ -1,4 +1,4 @@
-import {groundHeight} from './landform.mjs?v=03bcba9148dc';
+import {groundHeight} from './landform.mjs?v=eed7fff475f6';
 export const GOLD_MODULES=[['foundation','01 地形'],['water','02 海岸与浪'],['room','03 画室'],['village','04 建筑'],['paths','05 石径'],['boardwalk','06 木栈道'],['ecology','07 植被'],['props','08 画室道具'],['couple','09 纸片人物'],['content','10 作品内容']].map(([id,name])=>({id,name}));
 export const C={sand:'#f1e4ca',wet:'#cfbfa4',paper:'#f5efe2',stone:'#a29d93',wood:'#aa8058',woodDark:'#735539',wall:'#eee2c8',roof:'#c47752',foam:'#faf6e9',ink:'#3f3025',leaf:'#72965c',flower:'#dd98ad',yellow:'#e7c968',water:'#439db1',fish:'#e87b3e'};
 export const hash=(x,z,s=1)=>{const a=Math.sin(x*127.1+z*311.7+s*74.7)*43758.5453;return a-Math.floor(a);};

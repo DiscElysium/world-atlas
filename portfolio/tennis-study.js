@@ -1,11 +1,11 @@
 import * as THREE from './vendor/three.module.js';
-import {layout,PITCH,groundPoint} from './map-model.mjs?v=03bcba9148dc';
-import {modelKit} from './model-kit.js?v=03bcba9148dc';
-import {sceneGround} from './terrain.mjs?v=03bcba9148dc';
-import {PROJECTS} from './projects.mjs?v=03bcba9148dc';
-import {buildTennis,TENNIS_MODULES} from './scene-tennis.js?v=03bcba9148dc';
-import {buildTennisGround} from './tennis-ground.js?v=03bcba9148dc';
-import {createTennisPortrait} from './tennis-portrait.js?v=03bcba9148dc';
+import {layout,PITCH,groundPoint} from './map-model.mjs?v=eed7fff475f6';
+import {modelKit} from './model-kit.js?v=eed7fff475f6';
+import {sceneGround} from './terrain.mjs?v=eed7fff475f6';
+import {PROJECTS} from './projects.mjs?v=eed7fff475f6';
+import {buildTennis,TENNIS_MODULES} from './scene-tennis.js?v=eed7fff475f6';
+import {buildTennisGround} from './tennis-ground.js?v=eed7fff475f6';
+import {createTennisPortrait} from './tennis-portrait.js?v=eed7fff475f6';
 
 const container=document.querySelector('#study-world'),scene=new THREE.Scene(),project=PROJECTS.find(p=>p.id==='tennis'),root=new THREE.Group(),content=new THREE.Group(),animated=[];
 scene.background=new THREE.Color('#f7f7f3');scene.add(root,content);

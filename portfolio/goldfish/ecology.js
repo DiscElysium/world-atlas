@@ -1,6 +1,6 @@
 import * as THREE from '../vendor/three.module.js';
-import {goldfishHeight,perceptionSide,polygonDistance,pathSample,coastX,hash,GOLD_COLORS as C} from './plan.mjs?v=03bcba9148dc';
-import {buildGoldfishCollage} from './collage.js?v=03bcba9148dc';
+import {goldfishHeight,perceptionSide,polygonDistance,pathSample,coastX,hash,GOLD_COLORS as C} from './plan.mjs?v=eed7fff475f6';
+import {buildGoldfishCollage} from './collage.js?v=eed7fff475f6';
 
 function cypress(f,parent,x,y,z,height,swapped,index){
  const g=f.group('Paper cypress '+index,parent);g.position.set(x,y,z);

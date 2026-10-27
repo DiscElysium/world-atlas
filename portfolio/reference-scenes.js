@@ -1,12 +1,12 @@
 import * as THREE from './vendor/three.module.js';
 import {GLTFLoader} from './vendor/addons/loaders/GLTFLoader.js';
 import {DRACOLoader} from './vendor/addons/loaders/DRACOLoader.js';
-import {configurePlanet} from './space/planet-material.mjs?v=03bcba9148dc';
-import {MAP_WIDTH,smooth} from './map-model.mjs?v=03bcba9148dc';
-import {configureJourneyMaterial} from './journey-boundary.js?v=03bcba9148dc';
-import {prepareReferenceLanguage} from './reference-language.js?v=03bcba9148dc';
-import {createOtherworksView} from './otherworks/chapter.js?v=03bcba9148dc';
-import {batchStaticReference,trimStaticBatchToChapter} from './static-reference-batch.js?v=03bcba9148dc';
+import {configurePlanet} from './space/planet-material.mjs?v=eed7fff475f6';
+import {MAP_WIDTH,smooth} from './map-model.mjs?v=eed7fff475f6';
+import {configureJourneyMaterial} from './journey-boundary.js?v=eed7fff475f6';
+import {prepareReferenceLanguage} from './reference-language.js?v=eed7fff475f6';
+import {createOtherworksView} from './otherworks/chapter.js?v=eed7fff475f6';
+import {batchStaticReference,trimStaticBatchToChapter} from './static-reference-batch.js?v=eed7fff475f6';
 
 export const REFERENCE_IDS=['tennis','engine','otherworks'];
 export function emptyReferenceContent(){return{root:new THREE.Group(),zones:[],interactive:[],setHighlight(){},dispose(){}};}

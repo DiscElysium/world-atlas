@@ -1,5 +1,5 @@
 import * as THREE from '../vendor/three.module.js';
-import {coastX,goldfishHeight,goldfishSurface,hash,READING_CONTOUR,ROOM_CONTOUR,GOLD_COLORS as C} from './plan.mjs?v=03bcba9148dc';
+import {coastX,goldfishHeight,goldfishSurface,hash,READING_CONTOUR,ROOM_CONTOUR,GOLD_COLORS as C} from './plan.mjs?v=eed7fff475f6';
 
 export function buildGoldfishGround(f,p){
  const root=f.group('01 · Continuous folded-paper terrain'),vertices=[],colours=[],uvs=[],points=[],nx=100,nz=p.mobile?170:72,b=p.bounds;

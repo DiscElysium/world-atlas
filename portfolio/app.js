@@ -1,13 +1,13 @@
-import {PROJECTS as SOURCE_PROJECTS,STEP,imageURL} from './projects.mjs?v=03bcba9148dc';
-import {LANGUAGE_KEY,resolveLanguage,localizedProject,translate,navName} from './i18n.mjs?v=03bcba9148dc';
-import {PortfolioWorld} from './portfolio-world.js?v=03bcba9148dc';
-import {copyCanvas,buttonCanvas,loadArtwork} from './content.js?v=03bcba9148dc';
+import {PROJECTS as SOURCE_PROJECTS,STEP,imageURL} from './projects.mjs?v=eed7fff475f6';
+import {LANGUAGE_KEY,resolveLanguage,localizedProject,translate,navName} from './i18n.mjs?v=eed7fff475f6';
+import {PortfolioWorld} from './portfolio-world.js?v=eed7fff475f6';
+import {copyCanvas,buttonCanvas,loadArtwork} from './content.js?v=eed7fff475f6';
 import * as THREE from 'three';
-import {loadGoldfishTextures} from './goldfish/assets.js?v=03bcba9148dc';
-import {createEmbeddedJourney} from './embedded-journey.js?v=03bcba9148dc';
-import {AtlasWorld} from './atlas-world.js?v=03bcba9148dc';
-import {createAtlasLoader} from './atlas-loader.js?v=03bcba9148dc';
-import {createProjectGuide} from './project-guide.js?v=03bcba9148dc';
+import {loadGoldfishTextures} from './goldfish/assets.js?v=eed7fff475f6';
+import {createEmbeddedJourney} from './embedded-journey.js?v=eed7fff475f6';
+import {AtlasWorld} from './atlas-world.js?v=eed7fff475f6';
+import {createAtlasLoader} from './atlas-loader.js?v=eed7fff475f6';
+import {createProjectGuide} from './project-guide.js?v=eed7fff475f6';
 const unified=document.body.classList.contains('unified-atlas'),atlasLoader=unified?createAtlasLoader(THREE):null;
 let savedLanguage;try{savedLanguage=localStorage.getItem(LANGUAGE_KEY);}catch{}
 let language=resolveLanguage(new URLSearchParams(location.search).get('lang'),savedLanguage);

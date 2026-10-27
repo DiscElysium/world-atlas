@@ -1,5 +1,5 @@
 import * as THREE from '../../vendor/three.module.js';
-import {C,hash} from './plan.mjs?v=03bcba9148dc';
+import {C,hash} from './plan.mjs?v=eed7fff475f6';
 const wallColours=['#eadbc0','#e7d8be','#f0e4cc','#eaddc5'];
 function masonry(f,g,w,h,z,open){
  const rows=Math.ceil(h/.43),bw=.73;

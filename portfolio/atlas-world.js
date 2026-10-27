@@ -1,13 +1,13 @@
-import {ATELIER_DAYLIGHT} from './daylight-rig.js?v=03bcba9148dc';
+import {ATELIER_DAYLIGHT} from './daylight-rig.js?v=eed7fff475f6';
 import * as THREE from './vendor/three.module.js';
-import {PortfolioWorld} from './portfolio-world.js?v=03bcba9148dc';
-import {smooth} from './map-model.mjs?v=03bcba9148dc';
-import {loadAtelier,AtelierChapter,createAtelierConnector} from './atelier-chapter.js?v=03bcba9148dc';
-import {journeyTone} from './journey-tone.js?v=03bcba9148dc';
-import {cameraInfluence} from './reference-scenes.js?v=03bcba9148dc';
-import {smoother} from './atlas/atelier-composition.js?v=03bcba9148dc';
-import {applyProjection,connectPose} from './atlas-motion.js?v=03bcba9148dc';
-import {AtlasMaterialization} from './atlas-materialization.js?v=03bcba9148dc';
+import {PortfolioWorld} from './portfolio-world.js?v=eed7fff475f6';
+import {smooth} from './map-model.mjs?v=eed7fff475f6';
+import {loadAtelier,AtelierChapter,createAtelierConnector} from './atelier-chapter.js?v=eed7fff475f6';
+import {journeyTone} from './journey-tone.js?v=eed7fff475f6';
+import {cameraInfluence} from './reference-scenes.js?v=eed7fff475f6';
+import {smoother} from './atlas/atelier-composition.js?v=eed7fff475f6';
+import {applyProjection,connectPose} from './atlas-motion.js?v=eed7fff475f6';
+import {AtlasMaterialization} from './atlas-materialization.js?v=eed7fff475f6';
 const clamp=x=>THREE.MathUtils.clamp(x,0,1);
 
 export class AtlasWorld extends PortfolioWorld{

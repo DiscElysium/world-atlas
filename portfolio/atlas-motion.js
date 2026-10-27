@@ -1,5 +1,5 @@
 import * as THREE from './vendor/three.module.js';
-import {smoother} from './atlas/atelier-composition.js?v=03bcba9148dc';
+import {smoother} from './atlas/atelier-composition.js?v=eed7fff475f6';
 
 export function applyProjection(camera,{width,aspect,distance,perspective=1/distance}){
  // Interpolate effective perspective strength, rather than independently

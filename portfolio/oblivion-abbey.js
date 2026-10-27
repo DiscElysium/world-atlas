@@ -1,5 +1,5 @@
 import * as THREE from './vendor/three.module.js';
-import {PITCH} from './map-model.mjs?v=03bcba9148dc';
+import {PITCH} from './map-model.mjs?v=eed7fff475f6';
 
 export function buildAbbey(f,c,viaduct){
  const p=c.ground(.80,c.L.mobile?.18:.30),abbey=f.group('OBLIVION · Ruined abbey');abbey.position.set(p.x,p.y,p.z);abbey.rotation.y=-.2;abbey.scale.setScalar(c.L.mobile?.60:.68);

@@ -1,5 +1,5 @@
 import * as THREE from '../vendor/three.module.js';
-import {GOLD_COLORS as C} from './plan.mjs?v=03bcba9148dc';
+import {GOLD_COLORS as C} from './plan.mjs?v=eed7fff475f6';
 
 function cameraModel(f,parent,x,y,z){
  const g=f.group('Compact camera with lens, grip, dial and strap',parent);g.position.set(x,y,z);

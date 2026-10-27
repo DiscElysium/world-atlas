@@ -1,12 +1,12 @@
 import * as THREE from './vendor/three.module.js';
 import {GLTFLoader} from './vendor/addons/loaders/GLTFLoader.js';
 import {mergeGeometries} from './vendor/addons/utils/BufferGeometryUtils.js';
-import {createPortfolioIntro} from './atlas/portfolio-intro.js?v=03bcba9148dc';
-import {applyOblivionInk} from './atlas/oblivion-ink.js?v=03bcba9148dc';
-import {createSurroundingDraft} from './atlas-surroundings.js?v=03bcba9148dc';
-import {bindJourneyTone} from './journey-tone.js?v=03bcba9148dc';
-import {WORKTOP_VIEW,worktopWidth} from './atlas/atelier-composition.js?v=03bcba9148dc';
-import {replaceGroundWordmark} from './space-identity.js?v=03bcba9148dc';
+import {createPortfolioIntro} from './atlas/portfolio-intro.js?v=eed7fff475f6';
+import {applyOblivionInk} from './atlas/oblivion-ink.js?v=eed7fff475f6';
+import {createSurroundingDraft} from './atlas-surroundings.js?v=eed7fff475f6';
+import {bindJourneyTone} from './journey-tone.js?v=eed7fff475f6';
+import {WORKTOP_VIEW,worktopWidth} from './atlas/atelier-composition.js?v=eed7fff475f6';
+import {replaceGroundWordmark} from './space-identity.js?v=eed7fff475f6';
 const smooth=(a,b,x)=>{const t=THREE.MathUtils.clamp((x-a)/(b-a),0,1);return t*t*(3-2*t);};
 
 function batch(root){

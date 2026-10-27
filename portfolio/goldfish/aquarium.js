@@ -1,5 +1,5 @@
 import * as THREE from '../vendor/three.module.js';
-import {GOLD_COLORS as C} from './plan.mjs?v=03bcba9148dc';
+import {GOLD_COLORS as C} from './plan.mjs?v=eed7fff475f6';
 
 export function goldfishModel(f,parent,position,scale=1,color='#eb7627'){
  const root=f.group('Goldfish · body, tail, fins and eyes',parent);root.position.set(...position);root.scale.setScalar(scale);

@@ -1,6 +1,6 @@
 import * as THREE from '../vendor/three.module.js';
-import {smooth} from '../map-model.mjs?v=03bcba9148dc';
-import {createPhotoDraft} from './draft.js?v=03bcba9148dc';
+import {smooth} from '../map-model.mjs?v=eed7fff475f6';
+import {createPhotoDraft} from './draft.js?v=eed7fff475f6';
 
 // The desktop and portrait paths are separately baked Bullet simulations.
 // Scroll samples positions/quaternions; idle time never advances the pile.

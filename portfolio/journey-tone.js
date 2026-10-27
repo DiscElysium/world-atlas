@@ -1,5 +1,5 @@
 import * as THREE from './vendor/three.module.js';
-import {smooth} from './map-model.mjs?v=03bcba9148dc';
+import {smooth} from './map-model.mjs?v=eed7fff475f6';
 
 // Blend color grading on the shared world image, without switching renderers
 // or blending separate scene images at the chapter midpoint.

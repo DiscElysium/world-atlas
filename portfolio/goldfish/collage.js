@@ -1,7 +1,7 @@
 import * as THREE from '../vendor/three.module.js';
-import {GAME_PAPERS} from './assets.js?v=03bcba9148dc';
-import {collageMaterial,PALETTE_CHANNELS} from './palette.js?v=03bcba9148dc';
-import {goldfishHeight,coastX} from './plan.mjs?v=03bcba9148dc';
+import {GAME_PAPERS} from './assets.js?v=eed7fff475f6';
+import {collageMaterial,PALETTE_CHANNELS} from './palette.js?v=eed7fff475f6';
+import {goldfishHeight,coastX} from './plan.mjs?v=eed7fff475f6';
 function paper(f,parent,kind,textures,width,swapped){
  const q=GAME_PAPERS[kind],height=width*(q.crop[3]-q.crop[1])/(q.crop[2]-q.crop[0]);
  const m=f.printed('Original game paper / '+kind+' / '+(swapped?'replaced':'normal'),textures.collage?.[kind]||null,width,height,parent,{color:'#ffffff',transparent:false,alphaTest:.12,emissiveIntensity:0});
