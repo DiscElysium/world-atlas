@@ -1,0 +1,27 @@
+#project-guide{position:absolute;z-index:4;left:26px;bottom:104px;width:310px;padding:17px 19px 13px;border-top:1px solid #627b7b66;border-bottom:1px solid #627b7b25;background:linear-gradient(110deg,#faf9f4f5,#faf9f4db);color:#30454b;opacity:var(--guide-opacity,1);box-shadow:0 9px 30px #18363c09;pointer-events:auto}
+#project-guide[hidden]{display:none}
+.guide-eyebrow{font:10px/1.6 Arial,"Microsoft YaHei",sans-serif;letter-spacing:.1em;margin:0 0 7px;color:#667b7d}
+.guide-title{font:600 23px/1.1 Arial,"Microsoft YaHei",sans-serif;letter-spacing:.02em;margin:0 0 8px}
+.guide-intro{font-size:13px;line-height:1.65;letter-spacing:.01em;margin:0;max-width:33em}
+.guide-actions{display:flex;align-items:center;gap:20px;margin-top:9px}
+.guide-actions a,.guide-actions button{display:inline-flex;align-items:center;min-height:44px;padding:0;border:0;border-radius:0;background:transparent;color:inherit;font:600 12px/1.4 Arial,"Microsoft YaHei",sans-serif;text-decoration:none}
+.guide-details{opacity:.72}.guide-open{border-bottom:1px solid currentColor!important;min-height:44px}
+#project-guide .guide-actions [hidden]{display:none}
+#project-guide[data-project=engine]{background:linear-gradient(110deg,#0b1730df,#0b173015);color:#efeeda;border-color:#b4cee647;box-shadow:none}
+#project-guide[data-project=engine] .guide-eyebrow{color:#b5c9dc}
+#project-guide[data-focus-kind=project] .guide-open,#project-guide[data-focus-kind=art] .guide-details{outline:2px solid currentColor;outline-offset:4px}
+#project-guide[data-project=tennis] .guide-title{font-family:Impact,"Arial Narrow",sans-serif;font-weight:400;letter-spacing:.01em}
+#project-guide[data-project=atelier] .guide-title{font-family:Georgia,"Microsoft YaHei",serif;font-weight:400}
+#project-hint{position:absolute;z-index:8;max-width:calc(100% - 30px);padding:9px 12px;border:1px solid #78908e66;background:#fcfbf4f5;color:#334e53;box-shadow:0 5px 15px #1b343512;pointer-events:none;font:11px/1.5 Arial,"Microsoft YaHei",sans-serif;letter-spacing:.025em}
+#project-hint[hidden]{display:none}
+@media(min-width:901px),(orientation:landscape){#project-guide:not([data-keyboard=true]){display:none}}
+@media(max-width:900px) and (orientation:portrait){
+ #project-guide{top:88px;bottom:auto;left:24px;right:24px;width:auto;max-width:430px;margin:auto;padding:15px 16px 7px;box-shadow:none}
+ .guide-title{font-size:25px}.guide-intro{font-size:14px}.guide-eyebrow{font-size:9px;letter-spacing:.08em}
+ #project-guide[data-reading=false]:not([data-keyboard=true]){display:none}
+}
+@media(max-height:710px) and (orientation:portrait){#project-guide{top:77px;padding-top:9px}.guide-eyebrow,.guide-intro{display:none}.guide-title{font-size:21px;margin-bottom:0}.guide-actions{margin-top:1px}}
+@media(hover:none){#project-hint{display:none}}
+.no-webgl #project-guide,.no-webgl #project-hint{display:none!important}
+
+.dialog-visit{display:inline-flex;min-height:48px;align-items:center;margin-top:20px;padding:0 18px;border:1px solid currentColor;border-radius:4px;color:var(--accent);font-size:14px;font-weight:600;text-decoration:none}

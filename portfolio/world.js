@@ -1,8 +1,8 @@
 import * as THREE from 'three';
-import {PITCH,FOV,MAP_WIDTH,layout,groundPoint,whiteMask,heightAt,riverPoints,seeded,scrollView} from './map-model.mjs';
-import {createScenery} from './scenery.js';
-import {createPortfolioContent} from './content.js';
-import {pickSurface} from './content-layout.mjs';
+import {PITCH,FOV,MAP_WIDTH,layout,groundPoint,whiteMask,heightAt,riverPoints,seeded,scrollView} from './map-model.mjs?v=03bcba9148dc';
+import {createScenery} from './scenery.js?v=03bcba9148dc';
+import {createPortfolioContent} from './content.js?v=03bcba9148dc';
+import {pickSurface} from './content-layout.mjs?v=03bcba9148dc';
 export class GardenWorld{
   constructor(container){this.container=container;this.renderer=new THREE.WebGLRenderer({antialias:true,alpha:false,powerPreference:'high-performance'});this.renderer.setPixelRatio(Math.min(window.devicePixelRatio,1.6));this.renderer.setClearColor('#f6f7ee');this.renderer.shadowMap.enabled=true;this.renderer.shadowMap.type=THREE.PCFSoftShadowMap;this.renderer.outputColorSpace=THREE.SRGBColorSpace;this.renderer.toneMapping=THREE.ACESFilmicToneMapping;this.renderer.toneMappingExposure=.97;container.append(this.renderer.domElement);this.scene=new THREE.Scene();this.camera=new THREE.PerspectiveCamera(FOV,1,.1,300);this.camera.position.set(0,Math.sin(PITCH)*75,Math.cos(PITCH)*75);this.camera.lookAt(0,0,0);this.sun=new THREE.DirectionalLight('#fff4d9',2.8);this.sun.position.set(-12,26,-10);this.sun.castShadow=true;this.sun.shadow.mapSize.set(2048,2048);this.sun.shadow.camera.left=-29;this.sun.shadow.camera.right=29;this.sun.shadow.camera.top=36;this.sun.shadow.camera.bottom=-36;this.sun.shadow.camera.near=.1;this.sun.shadow.camera.far=100;this.sun.shadow.bias=-.0003;this.sun.shadow.normalBias=.026;this.scene.add(this.sun);this.sky=new THREE.HemisphereLight('#e7f6ff','#b9c4a4',1.15);this.scene.add(this.sky);this.fill=new THREE.DirectionalLight('#d9efef',.35);this.fill.position.set(18,14,12);this.scene.add(this.fill);this.time={value:0};this.mode='day';this.targetPointer=new THREE.Vector2();this.pointer=new THREE.Vector2();this.ready=false;this.paused=false;this.lastTime=0;this.renderer.debug.onShaderError=(gl,p,vs,fs)=>{console.error('Map shader compilation failed',gl.getShaderInfoLog(vs),gl.getShaderInfoLog(fs));document.body.classList.add('no-webgl')};}
   rebuild(width,height,spec,artwork){

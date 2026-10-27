@@ -1,12 +1,12 @@
 import * as THREE from './vendor/three.module.js';
 import {GLTFLoader} from './vendor/addons/loaders/GLTFLoader.js';
 import {mergeGeometries} from './vendor/addons/utils/BufferGeometryUtils.js';
-import {createPortfolioIntro} from './atlas/portfolio-intro.js';
-import {applyOblivionInk} from './atlas/oblivion-ink.js';
-import {createSurroundingDraft} from './atlas-surroundings.js';
-import {bindJourneyTone} from './journey-tone.js';
-import {WORKTOP_VIEW,worktopWidth} from './atlas/atelier-composition.js';
-import {replaceGroundWordmark} from './space-identity.js';
+import {createPortfolioIntro} from './atlas/portfolio-intro.js?v=03bcba9148dc';
+import {applyOblivionInk} from './atlas/oblivion-ink.js?v=03bcba9148dc';
+import {createSurroundingDraft} from './atlas-surroundings.js?v=03bcba9148dc';
+import {bindJourneyTone} from './journey-tone.js?v=03bcba9148dc';
+import {WORKTOP_VIEW,worktopWidth} from './atlas/atelier-composition.js?v=03bcba9148dc';
+import {replaceGroundWordmark} from './space-identity.js?v=03bcba9148dc';
 const smooth=(a,b,x)=>{const t=THREE.MathUtils.clamp((x-a)/(b-a),0,1);return t*t*(3-2*t);};
 
 function batch(root){
@@ -34,6 +34,7 @@ export class AtelierChapter{
   this.entries=asset.projects.map((project,index)=>({project,index,groups:[],box:new THREE.Box3()}));
   root.traverse(o=>{
    if(o.isMesh&&o.userData.label_role==='project_title'&&o.userData.label_index===3)replaceGroundWordmark(o,'SPACE');
+   const number=/^Drafted_project_number_([23])$/.exec(o.name);if(o.isMesh&&number){const index=Number(number[1]);replaceGroundWordmark(o,index===2?'04':'03','#'+o.material.color.getHexString());o.userData.label_role='project_number';o.userData.label_index=index;o.userData.chapterNumber=index===2?'04':'03';}
    if(Number.isInteger(o.userData.project_index))this.entries[o.userData.project_index]?.groups.push(o);
    if(o.isMesh){o.castShadow=!o.userData.surface_marking;o.receiveShadow=!o.userData.surface_marking;
     const mats=Array.isArray(o.material)?o.material:[o.material];for(const m of mats)if(m.transparent||m.transmission>0){m.depthWrite=false;o.castShadow=false;o.receiveShadow=false;}

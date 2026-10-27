@@ -1,6 +1,6 @@
 import * as THREE from '../vendor/three.module.js';
-import {hash,GOLD_COLORS as C} from './plan.mjs';
-import {tennisForms} from '../tennis-forms.js';
+import {hash,GOLD_COLORS as C} from './plan.mjs?v=03bcba9148dc';
+import {tennisForms} from '../tennis-forms.js?v=03bcba9148dc';
 
 export function goldfishForms(root){
  const materials=new Map(),geometries=new Map(),compactKit=tennisForms(root);

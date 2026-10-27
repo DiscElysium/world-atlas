@@ -1,7 +1,7 @@
 import * as THREE from '../vendor/three.module.js';
-import {seeded} from '../map-model.mjs';
-import {flowSurface} from './plan.mjs';
-import {FLOW_COLORS as C} from './palette.mjs';
+import {seeded} from '../map-model.mjs?v=03bcba9148dc';
+import {flowSurface} from './plan.mjs?v=03bcba9148dc';
+import {FLOW_COLORS as C} from './palette.mjs?v=03bcba9148dc';
 const mat=color=>new THREE.MeshStandardMaterial({color,roughness:1,flatShading:true});
 function part(root,id,name){const g=new THREE.Group();g.name='FLOW · '+name;g.userData={moduleId:id,name};root.add(g);return g;}
 // Five asymmetric, flat-bottomed rock forms. Each ring follows the same angular

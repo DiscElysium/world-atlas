@@ -1,7 +1,7 @@
 import * as THREE from '../vendor/three.module.js';
-import {flowSurface,readingMask,raisedPoint} from './plan.mjs';
-import {smooth} from '../map-model.mjs';
-import {FLOW_COLORS as C} from './palette.mjs';
+import {flowSurface,readingMask,raisedPoint} from './plan.mjs?v=03bcba9148dc';
+import {smooth} from '../map-model.mjs?v=03bcba9148dc';
+import {FLOW_COLORS as C} from './palette.mjs?v=03bcba9148dc';
 
 function module(root,id,name){const g=new THREE.Group();g.name='FLOW · '+name;g.userData={moduleId:id,name};root.add(g);return g;}
 function altitude(x,z,r,plan,gap){let h=0;for(const [dx,dz] of [[0,0],[-r,0],[r,0],[0,-r],[0,r],[-r*.7,-r*.7],[r*.7,r*.7]])h=Math.max(h,flowSurface(x+dx,z+dz,plan,false).height);return h+gap;}

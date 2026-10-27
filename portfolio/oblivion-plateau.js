@@ -1,5 +1,5 @@
 import * as THREE from './vendor/three.module.js';
-import {OBLIVION_PLATEAU} from './oblivion-terrain.mjs';
+import {OBLIVION_PLATEAU} from './oblivion-terrain.mjs?v=03bcba9148dc';
 export function buildPlateau(f,c){
  if(c.L.mobile)return;
  const plateau=f.group('OBLIVION · Unbroken reading plateau');

@@ -1,5 +1,5 @@
 import * as THREE from './vendor/three.module.js';
-import {tennisMaterial} from './tennis-materials.js';
+import {tennisMaterial} from './tennis-materials.js?v=03bcba9148dc';
 
 export const TENNIS_COLORS={white:'#f7f7f3',stone:'#e2e3dc',orange:'#ed702c',blue:'#235fce',dark:'#3c494d',lime:'#d4e744',skin:'#dcb996'};
 export function tennisForms(root){

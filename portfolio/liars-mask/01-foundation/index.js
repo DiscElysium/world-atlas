@@ -1,5 +1,5 @@
 import * as THREE from '../../vendor/three.module.js';
-import {seeded,smooth,prism,mergeMeshes} from '../geometry.js';
+import {seeded,smooth,prism,mergeMeshes} from '../geometry.js?v=03bcba9148dc';
 
 export const READING_Y=.65;
 export const TABLE_POLYGON=[[-11.3,-9],[1.5,-9],[1.5,-1.4],[.5,1.1],[-8.7,1.1],[-11.3,-1.1]];

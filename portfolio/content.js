@@ -1,5 +1,5 @@
 import * as THREE from './vendor/three.module.js';
-import {surfaceFrame,surfaceZone} from './content-layout.mjs';
+import {surfaceFrame,surfaceZone} from './content-layout.mjs?v=03bcba9148dc';
 
 export async function loadArtwork(image){
   const texture=await new THREE.TextureLoader().loadAsync(image.currentSrc||image.src);

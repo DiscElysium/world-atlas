@@ -1,12 +1,12 @@
-import {makeGoldfishPlan,GOLD_MODULES} from './goldfish/model-v1/plan.mjs';
-import {goldfishForms} from './goldfish/model-v1/forms.js';
-import {buildGround} from './goldfish/model-v1/terrain.js';
-import {buildCoast} from './goldfish/model-v1/coast.js';
-import {buildStudio,buildVillage} from './goldfish/model-v1/architecture.js';
-import {buildPaths,buildBoardwalk} from './goldfish/model-v1/paths.js';
-import {buildEcology} from './goldfish/model-v1/ecology.js';
-import {buildProps} from './goldfish/model-v1/props.js';
-import {buildCouple} from './goldfish/model-v1/characters.js';
+import {makeGoldfishPlan,GOLD_MODULES} from './goldfish/model-v1/plan.mjs?v=03bcba9148dc';
+import {goldfishForms} from './goldfish/model-v1/forms.js?v=03bcba9148dc';
+import {buildGround} from './goldfish/model-v1/terrain.js?v=03bcba9148dc';
+import {buildCoast} from './goldfish/model-v1/coast.js?v=03bcba9148dc';
+import {buildStudio,buildVillage} from './goldfish/model-v1/architecture.js?v=03bcba9148dc';
+import {buildPaths,buildBoardwalk} from './goldfish/model-v1/paths.js?v=03bcba9148dc';
+import {buildEcology} from './goldfish/model-v1/ecology.js?v=03bcba9148dc';
+import {buildProps} from './goldfish/model-v1/props.js?v=03bcba9148dc';
+import {buildCouple} from './goldfish/model-v1/characters.js?v=03bcba9148dc';
 export {GOLD_MODULES};
 export function buildGoldfish(c){
  const f=goldfishForms(c.kit.root),plan=makeGoldfishPlan({mobile:c.L?.mobile||c.mobile}),modules=[];

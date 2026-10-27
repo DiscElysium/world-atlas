@@ -1,13 +1,13 @@
-import {ATELIER_DAYLIGHT} from './daylight-rig.js';
+import {ATELIER_DAYLIGHT} from './daylight-rig.js?v=03bcba9148dc';
 import * as THREE from './vendor/three.module.js';
-import {PortfolioWorld} from './portfolio-world.js?v=8f12d970b90a';
-import {smooth} from './map-model.mjs';
-import {loadAtelier,AtelierChapter,createAtelierConnector} from './atelier-chapter.js';
-import {journeyTone} from './journey-tone.js';
-import {cameraInfluence} from './reference-scenes.js?v=8f12d970b90a';
-import {smoother} from './atlas/atelier-composition.js';
-import {applyProjection,connectPose} from './atlas-motion.js';
-import {AtlasMaterialization} from './atlas-materialization.js';
+import {PortfolioWorld} from './portfolio-world.js?v=03bcba9148dc';
+import {smooth} from './map-model.mjs?v=03bcba9148dc';
+import {loadAtelier,AtelierChapter,createAtelierConnector} from './atelier-chapter.js?v=03bcba9148dc';
+import {journeyTone} from './journey-tone.js?v=03bcba9148dc';
+import {cameraInfluence} from './reference-scenes.js?v=03bcba9148dc';
+import {smoother} from './atlas/atelier-composition.js?v=03bcba9148dc';
+import {applyProjection,connectPose} from './atlas-motion.js?v=03bcba9148dc';
+import {AtlasMaterialization} from './atlas-materialization.js?v=03bcba9148dc';
 const clamp=x=>THREE.MathUtils.clamp(x,0,1);
 
 export class AtlasWorld extends PortfolioWorld{
@@ -67,11 +67,10 @@ export class AtlasWorld extends PortfolioWorld{
   const dt=Math.min(.1,Math.max(0,(time-(this.motionTime??time-16))/1000));this.motionTime=time;this.displayScroll=reduced?this.globalScroll:this.displayScroll+(this.globalScroll-this.displayScroll)*(1-Math.exp(-dt/.085));if(Math.abs(this.displayScroll-this.globalScroll)<.08)this.displayScroll=this.globalScroll;
   if(this.renderProgress<this.preludeScreens){
    this.lastTime=time;
-   this.applyPrefix();this.renderFrame();return {index:-1,atelier:true,project:{id:'atelier',ink:'#30464b'},phase:this.phase,z:this.atelier.center};
+   this.applyPrefix();if(this.shouldRender(reduced))this.renderFrame();return {index:-1,atelier:true,project:{id:'atelier',ink:'#30464b'},phase:this.phase,z:this.atelier.center};
   }
   super.setScroll(Math.max(0,this.displayScroll-this.preludeScreens*this.L.height));this.cameraZ=this.targetZ;this.atelier.apply(1);this.atelier.group.visible=this.cameraZ<this.L.depth*.75;this.connector.visible=this.cameraZ<this.L.depth;this.journeyGround.visible=true;this.phase='works';this.uiInk=undefined;
   Object.assign(this.sun.shadow.camera,{left:-28,right:28,top:Math.max(34,this.L.depth*.6),bottom:-Math.max(34,this.L.depth*.6),near:.5,far:100});this.sun.shadow.camera.updateProjectionMatrix();
-  this.renderer.shadowMap.needsUpdate=true;
   return super.update(time,reduced);
  }
  renderFrame(){

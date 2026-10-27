@@ -1,5 +1,5 @@
 import * as THREE from './vendor/three.module.js';
-import {TENNIS_COLORS as C} from './tennis-forms.js';
+import {TENNIS_COLORS as C} from './tennis-forms.js?v=03bcba9148dc';
 
 const POSES=[
  {hip:[0,1.02,0],chest:[-.03,1.46,-.015],head:[-.06,1.81,-.02],ls:[-.25,1.50,.03],le:[-.46,1.24,.12],lw:[-.75,1.29,-.02],rs:[.23,1.50,-.07],re:[.57,1.53,-.32],rw:[.91,1.63,-.53],lk:[-.32,.54,.30],la:[-.53,.12,.43],rk:[.39,.54,-.12],ra:[.59,.12,-.31]},

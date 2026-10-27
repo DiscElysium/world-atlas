@@ -1,11 +1,11 @@
 import * as THREE from './vendor/three.module.js';
-import {layout} from './map-model.mjs';
-import {modelKit} from './model-kit.js';
-import {buildFlow,FLOW_MODULES} from './scene-flow.js';
-import {buildFlowTerrain} from './flow/terrain.js';
-import {flowSurface,FLOW_ZONES,FLOW_CONTENT} from './flow/plan.mjs';
-import {buildFlowZoning} from './flow/zoning.js';
-import {FLOW_COLORS as C,FLOW_LIGHT as light} from './flow/palette.mjs';
+import {layout} from './map-model.mjs?v=03bcba9148dc';
+import {modelKit} from './model-kit.js?v=03bcba9148dc';
+import {buildFlow,FLOW_MODULES} from './scene-flow.js?v=03bcba9148dc';
+import {buildFlowTerrain} from './flow/terrain.js?v=03bcba9148dc';
+import {flowSurface,FLOW_ZONES,FLOW_CONTENT} from './flow/plan.mjs?v=03bcba9148dc';
+import {buildFlowZoning} from './flow/zoning.js?v=03bcba9148dc';
+import {FLOW_COLORS as C,FLOW_LIGHT as light} from './flow/palette.mjs?v=03bcba9148dc';
 
 const container=document.querySelector('#study-world'),scene=new THREE.Scene(),objects=new THREE.Group(),content=new THREE.Group(),animated=[];
 scene.background=new THREE.Color(C.background);scene.add(objects,content);

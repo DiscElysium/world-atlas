@@ -1,26 +1,26 @@
 import * as THREE from './vendor/three.module.js';
-import {layout,PITCH,FOV,groundPoint,seeded,screenPoint,whiteMask,smooth} from './map-model.mjs';
-import {createPortfolioContent} from './content.js';
-import {pickSurface} from './content-layout.mjs';
-import {terrainSample,sceneGround,normalizeProjectIndex,riverX} from './terrain.mjs';
-import {modelKit} from './model-kit.js';
-import {buildOblivion} from './scene-oblivion.js';
-import {createOblivionLand} from './oblivion-land.js';
-import {buildGoldfish} from './scene-goldfish.js';
-import {buildGoldfishContent} from './goldfish/content.js';
-import {buildFlow} from './scene-flow.js';
-import {buildFlowTerrain} from './flow/terrain.js';
-import {FLOW_LIGHT as flowLight} from './flow/palette.mjs';
-import {tennisTerrainColor} from './tennis-layout.mjs';
-import {tennisMaterial} from './tennis-materials.js';
-import {ReferenceScenes,REFERENCE_IDS,emptyReferenceContent,clipChapter} from './reference-scenes.js?v=8f12d970b90a';
-import {createJourneyGround} from './journey-ground.js';
-import {bindJourneyTone,updateJourneyTone} from './journey-tone.js';
-import {applyDaylight} from './daylight-rig.js';
-import {STEP} from './projects.mjs?v=8f12d970b90a';
-import {RenderStyles} from './render-styles.js';
-import {buildLiarsMask} from './scene-liars-mask.js';
-import {buildContent as buildLiarsContent} from './liars-mask/06-content/index.js';
+import {layout,PITCH,FOV,groundPoint,seeded,screenPoint,whiteMask,smooth} from './map-model.mjs?v=03bcba9148dc';
+import {createPortfolioContent} from './content.js?v=03bcba9148dc';
+import {pickSurface} from './content-layout.mjs?v=03bcba9148dc';
+import {terrainSample,sceneGround,normalizeProjectIndex,riverX} from './terrain.mjs?v=03bcba9148dc';
+import {modelKit} from './model-kit.js?v=03bcba9148dc';
+import {buildOblivion} from './scene-oblivion.js?v=03bcba9148dc';
+import {createOblivionLand} from './oblivion-land.js?v=03bcba9148dc';
+import {buildGoldfish} from './scene-goldfish.js?v=03bcba9148dc';
+import {buildGoldfishContent} from './goldfish/content.js?v=03bcba9148dc';
+import {buildFlow} from './scene-flow.js?v=03bcba9148dc';
+import {buildFlowTerrain} from './flow/terrain.js?v=03bcba9148dc';
+import {FLOW_LIGHT as flowLight} from './flow/palette.mjs?v=03bcba9148dc';
+import {tennisTerrainColor} from './tennis-layout.mjs?v=03bcba9148dc';
+import {tennisMaterial} from './tennis-materials.js?v=03bcba9148dc';
+import {ReferenceScenes,REFERENCE_IDS,emptyReferenceContent,clipChapter} from './reference-scenes.js?v=03bcba9148dc';
+import {createJourneyGround} from './journey-ground.js?v=03bcba9148dc';
+import {bindJourneyTone,updateJourneyTone} from './journey-tone.js?v=03bcba9148dc';
+import {applyDaylight} from './daylight-rig.js?v=03bcba9148dc';
+import {STEP} from './projects.mjs?v=03bcba9148dc';
+import {RenderStyles} from './render-styles.js?v=03bcba9148dc';
+import {buildLiarsMask} from './scene-liars-mask.js?v=03bcba9148dc';
+import {buildContent as buildLiarsContent} from './liars-mask/06-content/index.js?v=03bcba9148dc';
 const BUILDERS={oblivion:buildOblivion,flow:buildFlow,goldfish:buildGoldfish,'liars-mask':buildLiarsMask};
 export class PortfolioWorld{
  constructor(container,projects){
@@ -73,7 +73,7 @@ export class PortfolioWorld{
   this.styles.resize(width,height);this.styles.rebuild(this.entries);this.references.resize(width,height);
   this.journeyGround=createJourneyGround(this.projects,this.span);this.scene.add(this.journeyGround);
   this.scene.traverse(mesh=>{if(mesh.material)for(const material of Array.isArray(mesh.material)?mesh.material:[mesh.material])bindJourneyTone(material);});
-  this.maxZ=(this.projects.length-1)*this.span+this.L.depth*(this.L.mobile?.035:.14);this.ready=true;this.applyCamera();this.renderer.compile(this.scene,this.camera);this.renderFrame();
+  this.maxZ=(this.projects.length-1)*this.span+this.L.depth*(this.L.mobile?.035:.14);this.requestRender();this.ready=true;this.applyCamera();this.renderer.compile(this.scene,this.camera);this.renderFrame();
  }
  buildTerrain(entry){
   if(['goldfish','liars-mask',...REFERENCE_IDS].includes(entry.project.id)){entry.land=null;entry.terrainMeshes=[];entry.revealUniform={value:0};return;}
@@ -118,7 +118,15 @@ export class PortfolioWorld{
   this.references.adjustCamera?.(this.camera,this.entries,this.cameraZ,this.L);this.camera.updateProjectionMatrix();this.camera.updateMatrixWorld();
  }
  pick(x,y){const point=this.styles.scenePoint(x,y);if(!point)return null;this.pointer.set(point.x*2-1,1-point.y*2);const nearby=this.entries.filter(e=>Math.abs(e.center-this.cameraZ)<this.L.depth*1.2);return pickSurface(this.raycaster,this.camera,this.pointer,nearby.flatMap(e=>e.content.interactive));}
- setHighlight(action){for(const e of this.entries)e.content.setHighlight(action?.id===e.project.id?action:null);}
+ setHighlight(action){const key=action?action.id+'/'+action.kind:'';if(key===this.highlightKey)return;this.highlightKey=key;this.requestRender();for(const e of this.entries)e.content.setHighlight(action?.id===e.project.id?action:null);}
+ requestRender(){this.renderRequested=true;}
+ shouldRender(reduced=false){
+  const animated=!this.paused&&!reduced&&this.entries.some(e=>e.animated.length&&e.root.visible&&Math.abs(e.center-this.cameraZ)<this.L.depth*.85);
+  const signature=[this.phase,this.cameraZ,this.displayScroll,this.mode,this.paused,this.styles.enabled,this.highlightKey,this.L.width,this.L.height,this.references.views?.get('tennis')?.palette].join('/');
+  const needed=animated||this.renderRequested||signature!==this.lastRenderedSignature;
+  if(needed&&this.renderer.shadowMap)this.renderer.shadowMap.needsUpdate=true;
+  this.renderRequested=false;this.lastRenderedSignature=signature;return needed;
+ }
  update(time,reduced=false){
   if(!this.ready)return;const elapsed=Math.max(0,(time-(this.lastTime??time-16))/1000),dt=Math.min(.05,elapsed);this.lastTime=time;
   this.cameraZ=reduced?this.targetZ:this.cameraZ+(this.targetZ-this.cameraZ)*(1-Math.exp(-elapsed*9));this.applyCamera();if(!this.paused&&!reduced)this.clock+=dt;
@@ -137,7 +145,7 @@ export class PortfolioWorld{
   }
   const liarEntry=this.entries.find(e=>e.project.id==='liars-mask');if(liarEntry)liarEntry.content.root.scale.y=liarEntry.objects.scale.y;
   for(const e of this.entries)e.updateView?.(this.camera,{time:this.clock,scroll:(this.cameraZ-e.center)/this.L.depth,enabled:e.root.visible&&e.project===current.project,reduced:reduced||this.paused});
-  this.renderFrame();this.activeIndex=index;return{index,project:current.project,z:this.cameraZ};
+  if(this.shouldRender(reduced))this.renderFrame();this.activeIndex=index;return{index,project:current.project,z:this.cameraZ};
  }
  renderFrame(){
   if(!this.L)return;const liar=this.entries.find(e=>e.project.id==='liars-mask');
@@ -150,7 +158,7 @@ export class PortfolioWorld{
   data.reference=JSON.stringify(this.references.diagnostics());
   if(liar)data.actions=JSON.stringify(liar.content.interactive.map(m=>{const p=m.getWorldPosition(new THREE.Vector3()).project(this.camera);return{name:m.name,kind:m.userData.action.kind,x:(p.x+1)*.5*this.L.width,y:(1-p.y)*.5*this.L.height};}));
  }
- setLight(mode){this.mode=mode;}
+ setLight(mode){this.mode=mode;this.requestRender();}
 }
 
 

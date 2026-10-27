@@ -1,6 +1,6 @@
 import * as THREE from '../../vendor/three.module.js';
-import {mergeMeshes} from '../geometry.js';
-import {TABLE,SEATS} from '../layout.mjs';
+import {mergeMeshes} from '../geometry.js?v=03bcba9148dc';
+import {TABLE,SEATS} from '../layout.mjs?v=03bcba9148dc';
 
 const LIGHT='#e6dfd0',DARK='#b3a58d';
 export function buildChair(forms,parent,{position=[0,0,0],yaw=0,name='chair'}={}){

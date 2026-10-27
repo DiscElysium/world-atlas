@@ -1,5 +1,5 @@
 import * as THREE from '../vendor/three.module.js';
-import {flowSurface,FLOW_ZONES} from './plan.mjs';
+import {flowSurface,FLOW_ZONES} from './plan.mjs?v=03bcba9148dc';
 // A geometry-derived construction drawing: overlays share the assembled model's exact vertices.
 export function buildFlowZoning(scene,terrain,plan){
  const group=new THREE.Group();group.name='FLOW · construction zones';scene.add(group);

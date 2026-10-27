@@ -1,8 +1,8 @@
 import * as THREE from '../vendor/three.module.js';
-import {smooth,seeded} from '../map-model.mjs';
-import {shoreDistance} from './plan.mjs';
-import {buildFlowOcean} from './ocean.js';
-import {FLOW_COLORS as C} from './palette.mjs';
+import {smooth,seeded} from '../map-model.mjs?v=03bcba9148dc';
+import {shoreDistance} from './plan.mjs?v=03bcba9148dc';
+import {buildFlowOcean} from './ocean.js?v=03bcba9148dc';
+import {FLOW_COLORS as C} from './palette.mjs?v=03bcba9148dc';
 function part(root,id,name){const g=new THREE.Group();g.name='FLOW · '+name;g.userData={moduleId:id,name};root.add(g);return g;}
 export function buildFlowWater(root,plan,animate){
  const river=part(root,'water','连续河流'),head=part(root,'headwater','融水源与细流'),time={value:0};animate(t=>time.value=t);

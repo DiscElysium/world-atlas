@@ -1,6 +1,6 @@
 import * as THREE from './vendor/three.module.js';
-import {groundPoint,smooth} from './map-model.mjs';
-import {riverX} from './terrain.mjs';
+import {groundPoint,smooth} from './map-model.mjs?v=03bcba9148dc';
+import {riverX} from './terrain.mjs?v=03bcba9148dc';
 
 function forest(c,count=90,paper=false){
  const {kit:k,random:r}=c,trunks=[],tops=[[],[],[]];
@@ -61,4 +61,4 @@ export function buildEngine(c){
  const {curve}=k.line(route,'#8296b9',.21);for(let i=0;i<5;i++){const cargo=k.box('#dcbe84',[.35,.35,.35]);c.animate(t=>{cargo.position.copy(curve.getPoint((t*.045+i*.2)%1));cargo.position.y+=.21});}
  for(let i=0;i<15;i++){const u=c.random()*1.12-.06,v=c.random();if(c.safe(u,v,1.1))continue;const g=c.place(u,v),s=.6+c.random()*.7;k.add('rock','#56638d',[s,s*.65,s],[0,s*.3,0],g);if(i%2)k.add('cone',i%3?'#9bafd9':'#c69bbf',[.22,.8,.22],[.15,s*.6,0],g);}
 }
-export {buildGoldfish} from './scene-goldfish.js';
+export {buildGoldfish} from './scene-goldfish.js?v=03bcba9148dc';

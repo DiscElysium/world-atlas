@@ -1,5 +1,5 @@
-import {groundPoint,screenPoint,seeded,smooth,whiteMask} from './map-model.mjs';
-import {oblivionHeight,OBLIVION_PLATEAU,plateauMask} from './oblivion-terrain.mjs';
+import {groundPoint,screenPoint,seeded,smooth,whiteMask} from './map-model.mjs?v=03bcba9148dc';
+import {oblivionHeight,OBLIVION_PLATEAU,plateauMask} from './oblivion-terrain.mjs?v=03bcba9148dc';
 
 // An irregular triangle network follows the plateau rim, ridges and gorge floor.
 export function oblivionTopology(L,span){

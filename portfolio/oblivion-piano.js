@@ -1,5 +1,5 @@
 import * as THREE from './vendor/three.module.js';
-import {pianoData} from './oblivion-piano-data.mjs';
+import {pianoData} from './oblivion-piano-data.mjs?v=03bcba9148dc';
 
 export function buildPiano(f,parent){
  const piano=f.group('OBLIVION source grand piano · body, keys and open wing lid',parent);

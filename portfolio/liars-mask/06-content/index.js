@@ -1,8 +1,8 @@
 import * as THREE from '../../vendor/three.module.js';
-import {buildDie} from '../04-table/index.js';
-import {buildMask} from '../05-actors/index.js';
-import {floorHeightAt} from '../01-foundation/index.js';
-import {translate} from '../../i18n.mjs';
+import {buildDie} from '../04-table/index.js?v=03bcba9148dc';
+import {buildMask} from '../05-actors/index.js?v=03bcba9148dc';
+import {floorHeightAt} from '../01-foundation/index.js?v=03bcba9148dc';
+import {translate} from '../../i18n.mjs?v=03bcba9148dc';
 
 export function buildContent(forms,artwork,{mobile=false,anisotropy=4,language='zh'}={}){
  const root=forms.group('06 · Ground-printed portfolio'),interactive=[],owned=[];root.userData.moduleId='content';

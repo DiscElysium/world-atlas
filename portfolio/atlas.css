@@ -25,3 +25,11 @@ body.unified-atlas{background:#faf9f6}
 .unified-atlas .folio-intro-controls,.unified-atlas .folio-intro-caption{display:none}
 @media(max-width:700px){#atlas-back{left:14px;top:15px;padding:8px 10px}.unified-atlas .site-mark{display:none}}
 @media(prefers-reduced-motion:reduce){#atlas-loader,#loader-fill-window{transition:none}}
+.unified-atlas.no-webgl .map-page{position:relative;height:auto;min-height:100svh;overflow:visible}
+.unified-atlas.no-webgl .scroll-journey{height:auto!important;pointer-events:auto}
+.unified-atlas.no-webgl #atlas-back,.unified-atlas.no-webgl #atlas-scroll-cue{display:none}
+.unified-atlas.no-webgl .semantic-chapter{opacity:1;visibility:visible;pointer-events:auto}
+.unified-atlas.no-webgl .top-controls{visibility:visible}
+.unified-atlas.no-webgl .render-status{position:relative;inset:auto;transform:none;margin:0;padding:88px 24px 24px;border-radius:0;border-bottom:1px solid #d5ddd5;background:#f4f5ef;color:#30464b;font-size:14px;line-height:1.7;text-align:center}
+.unified-atlas.no-webgl .semantic-chapter[data-project=engine]{color:#f1f4fa}
+.unified-atlas .skip-link:focus{z-index:1100}

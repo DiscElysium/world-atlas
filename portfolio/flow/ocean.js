@@ -1,6 +1,6 @@
 import * as THREE from '../vendor/three.module.js';
-import {FLOW_COLORS as C} from './palette.mjs';
-import {seaDepth,shoreDistance} from './plan.mjs';
+import {FLOW_COLORS as C} from './palette.mjs?v=03bcba9148dc';
+import {seaDepth,shoreDistance} from './plan.mjs?v=03bcba9148dc';
 // Island II's ocean principles at the portfolio's scale: bathymetry absorption,
 // shore-attenuated swell, wind micro-normals and restrained moving foam.
 export function buildFlowOcean(root,plan,animate){

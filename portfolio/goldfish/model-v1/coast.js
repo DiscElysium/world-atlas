@@ -1,5 +1,5 @@
 import * as THREE from '../../vendor/three.module.js';
-import {C,hash,coastZ,goldfishHeight,smooth} from './plan.mjs';
+import {C,hash,coastZ,goldfishHeight,smooth} from './plan.mjs?v=03bcba9148dc';
 export function waveHeight(x,depth,time=0){return .014+Math.sin(x*.48+depth*1.6-time*.24)*.028+Math.sin(x*1.3-depth*2.1+time*.18)*.012+Math.exp(-(((depth-1.3)/.42)**2))*.11+Math.exp(-(((depth-3.7)/.60)**2))*.085;}
 export function buildCoast(f,p,animate=()=>{}){
  const g=f.group('02 · Continuous sea, breakers and ivory shore'),nx=p.mobile?76:128,nd=p.mobile?34:52,positions=[],colors=[],indices=[],shallow=new THREE.Color('#a4d5ca'),water=new THREE.Color(C.water),deep=new THREE.Color('#347e9c');

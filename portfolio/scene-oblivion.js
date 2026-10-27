@@ -1,9 +1,9 @@
-import {stoneForms} from './oblivion-forms.js';
-import {buildCourtyard} from './oblivion-courtyard.js';
-import {buildViaduct} from './oblivion-bridge.js';
-import {buildAbbey} from './oblivion-abbey.js';
-import {buildPaths} from './oblivion-paths.js';
-import {buildPlateau} from './oblivion-plateau.js';
+import {stoneForms} from './oblivion-forms.js?v=03bcba9148dc';
+import {buildCourtyard} from './oblivion-courtyard.js?v=03bcba9148dc';
+import {buildViaduct} from './oblivion-bridge.js?v=03bcba9148dc';
+import {buildAbbey} from './oblivion-abbey.js?v=03bcba9148dc';
+import {buildPaths} from './oblivion-paths.js?v=03bcba9148dc';
+import {buildPlateau} from './oblivion-plateau.js?v=03bcba9148dc';
 export function buildOblivion(c){
  const f=stoneForms(c.kit.root);
  buildPlateau(f,c);

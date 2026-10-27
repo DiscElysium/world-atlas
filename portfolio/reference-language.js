@@ -1,7 +1,7 @@
 import * as THREE from './vendor/three.module.js';
-import {translate} from './i18n.mjs?v=8f12d970b90a';
-import {PROJECTS} from './projects.mjs?v=8f12d970b90a';
-import {removePrintedRegion} from './space-identity.js';
+import {translate} from './i18n.mjs?v=03bcba9148dc';
+import {PROJECTS} from './projects.mjs?v=03bcba9148dc';
+import {removePrintedRegion} from './space-identity.js?v=03bcba9148dc';
 
 function print(text,width,depth,color,size=.8){
  const canvas=document.createElement('canvas');canvas.width=2048;canvas.height=Math.max(64,Math.round(2048*depth/width));

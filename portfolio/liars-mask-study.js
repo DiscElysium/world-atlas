@@ -1,12 +1,12 @@
 import * as THREE from './vendor/three.module.js';
-import {createForms} from './liars-mask/geometry.js';
-import {buildFoundation} from './liars-mask/01-foundation/index.js';
-import {buildRocks} from './liars-mask/02-rocks/index.js';
-import {BayerPass} from './liars-mask/bayer.js';
-import {buildRuins} from './liars-mask/03-ruins/index.js';
-import {buildTable} from './liars-mask/04-table/index.js';
-import {buildActors} from './liars-mask/05-actors/index.js';
-import {buildContent} from './liars-mask/06-content/index.js';
+import {createForms} from './liars-mask/geometry.js?v=03bcba9148dc';
+import {buildFoundation} from './liars-mask/01-foundation/index.js?v=03bcba9148dc';
+import {buildRocks} from './liars-mask/02-rocks/index.js?v=03bcba9148dc';
+import {BayerPass} from './liars-mask/bayer.js?v=03bcba9148dc';
+import {buildRuins} from './liars-mask/03-ruins/index.js?v=03bcba9148dc';
+import {buildTable} from './liars-mask/04-table/index.js?v=03bcba9148dc';
+import {buildActors} from './liars-mask/05-actors/index.js?v=03bcba9148dc';
+import {buildContent} from './liars-mask/06-content/index.js?v=03bcba9148dc';
 
 const container=document.querySelector('#study-world'),scene=new THREE.Scene(),root=new THREE.Group();scene.add(root);scene.background=new THREE.Color('#eee5d3');
 const renderer=new THREE.WebGLRenderer({antialias:false,preserveDrawingBuffer:true,powerPreference:'high-performance'});renderer.setPixelRatio(Math.min(devicePixelRatio,1.5));renderer.outputColorSpace=THREE.SRGBColorSpace;renderer.toneMapping=THREE.ACESFilmicToneMapping;renderer.toneMappingExposure=1.0;renderer.shadowMap.enabled=true;renderer.shadowMap.type=THREE.PCFSoftShadowMap;container.append(renderer.domElement);

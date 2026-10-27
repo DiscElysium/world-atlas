@@ -1,4 +1,4 @@
-import {smooth,whiteMask} from './map-model.mjs';
+import {smooth,whiteMask} from './map-model.mjs?v=03bcba9148dc';
 // The reading shelf moves down and slightly left with the picture and copy.
 export const OBLIVION_PLATEAU=[[.02,.535],[.06,.315],[.21,.255],[.41,.265],[.61,.295],[.68,.415],[.665,.615],[.545,.79],[.29,.825],[.075,.775]];
 export function plateauMask(u,v){

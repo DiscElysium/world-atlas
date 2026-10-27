@@ -1,11 +1,12 @@
 import * as THREE from './vendor/three.module.js';
 import {GLTFLoader} from './vendor/addons/loaders/GLTFLoader.js';
 import {DRACOLoader} from './vendor/addons/loaders/DRACOLoader.js';
-import {configurePlanet} from './space/planet-material.mjs';
-import {MAP_WIDTH,smooth} from './map-model.mjs';
-import {configureJourneyMaterial} from './journey-boundary.js';
-import {prepareReferenceLanguage} from './reference-language.js';
-import {createOtherworksView} from './otherworks/chapter.js';
+import {configurePlanet} from './space/planet-material.mjs?v=03bcba9148dc';
+import {MAP_WIDTH,smooth} from './map-model.mjs?v=03bcba9148dc';
+import {configureJourneyMaterial} from './journey-boundary.js?v=03bcba9148dc';
+import {prepareReferenceLanguage} from './reference-language.js?v=03bcba9148dc';
+import {createOtherworksView} from './otherworks/chapter.js?v=03bcba9148dc';
+import {batchStaticReference,trimStaticBatchToChapter} from './static-reference-batch.js?v=03bcba9148dc';
 
 export const REFERENCE_IDS=['tennis','engine','otherworks'];
 export function emptyReferenceContent(){return{root:new THREE.Group(),zones:[],interactive:[],setHighlight(){},dispose(){}};}
@@ -14,9 +15,11 @@ export const cameraInfluence=offset=>1-smooth(.14,.64,Math.abs(offset));
 // These are physical chapter boundaries, not opacity masks or screen overlays.
 export function clipChapter(entry,span,previous=entry.project,next=entry.project){
  const bounds=new THREE.Vector2(entry.center-span/2,entry.center+span/2);
+ entry.root.updateWorldMatrix(true,true);
  const tint={start:new THREE.Color(entry.project.ground).lerp(new THREE.Color(previous.ground),.5),end:new THREE.Color(entry.project.ground).lerp(new THREE.Color(next.ground),.5)};
  entry.root.traverse(mesh=>{
   if(!mesh.isMesh)return;
+  if(mesh.userData.staticReferenceBatch)trimStaticBatchToChapter(mesh,bounds,span);
   const materials=Array.isArray(mesh.material)?mesh.material:[mesh.material];
   if(materials.some(m=>m.name==='planet_atmosphere'||m.name.startsWith('planet_surface_')))return;
   const ground=entry.terrainMeshes?.includes(mesh)||mesh===entry.land||mesh.userData.component_id==='P01'||/Continuous_white_geological_ground|Terrain_foundations_limestone_atlas/.test(mesh.name);
@@ -26,7 +29,7 @@ export function clipChapter(entry,span,previous=entry.project,next=entry.project
 }
 
 export class ReferenceScenes{
- constructor(renderer){this.renderer=renderer;this.views=new Map();this.active=null;}
+ constructor(renderer){this.renderer=renderer;this.views=new Map();this.active=null;this.frustum=new THREE.Frustum();this.clipMatrix=new THREE.Matrix4();}
  async load(){
   const draco=new DRACOLoader();draco.setDecoderPath(new URL('./vendor/draco/',import.meta.url).href);draco.setWorkerLimit(2);
   const loader=new GLTFLoader();loader.setDRACOLoader(draco);
@@ -63,7 +66,7 @@ export class ReferenceScenes{
     }
    }
    if(mesh.name==='Button_VIEW_PROJECT'){mesh.userData.action={id:'tennis',kind:'project'};view.interactive.push(mesh);}
-  });this.views.set('tennis',view);
+  });view.staticBatch=batchStaticReference(gltf.scene,{partitionQuaternion:alignment,bandDepth:8/view.scale});this.views.set('tennis',view);
  }
  createSpace(gltf,spaceArtwork){
   const group=new THREE.Group();group.name='Space · long-map chapter';group.add(gltf.scene);
@@ -114,6 +117,8 @@ export class ReferenceScenes{
   }
  }
  update(entries,z,depth,camera){
+  this.frustum.setFromProjectionMatrix(this.clipMatrix.multiplyMatrices(camera.projectionMatrix,camera.matrixWorldInverse));
+  for(const view of this.views.values())view.model.traverse(mesh=>{const box=mesh.userData.chapterCullBox;if(box)mesh.visible=!box.isEmpty()&&this.frustum.intersectsBox(box);});
   this.active=entries.filter(e=>e.reference&&Math.abs(z-e.center)<depth*.75).sort((a,b)=>Math.abs(z-a.center)-Math.abs(z-b.center))[0]??null;
   this.camera=camera;this.visible=entries.filter(e=>e.root.visible).map(e=>e.project.id);
  }

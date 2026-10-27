@@ -1,9 +1,9 @@
-import {tennisLayout} from './tennis-layout.mjs';
-import {tennisForms} from './tennis-forms.js';
-import {buildTennisFoundation,buildTennisCampus,buildTennisPlanting} from './tennis-landscape.js';
-import {buildTennisCourt} from './tennis-court.js';
-import {buildTennisAthlete} from './tennis-athlete.js';
-import {buildTennisTrajectories} from './tennis-trajectories.js';
+import {tennisLayout} from './tennis-layout.mjs?v=03bcba9148dc';
+import {tennisForms} from './tennis-forms.js?v=03bcba9148dc';
+import {buildTennisFoundation,buildTennisCampus,buildTennisPlanting} from './tennis-landscape.js?v=03bcba9148dc';
+import {buildTennisCourt} from './tennis-court.js?v=03bcba9148dc';
+import {buildTennisAthlete} from './tennis-athlete.js?v=03bcba9148dc';
+import {buildTennisTrajectories} from './tennis-trajectories.js?v=03bcba9148dc';
 
 export const TENNIS_MODULES=[
  {id:'foundation',name:'地形与台地',build:(f,p,c)=>buildTennisFoundation(f,p)},

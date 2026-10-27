@@ -1,4 +1,4 @@
-import {journeyTone} from './journey-tone.js';
+import {journeyTone} from './journey-tone.js?v=03bcba9148dc';
 // Match both sides of a terrain join in world coordinates. Nothing dissolves.
 export function configureJourneyMaterial(material,bounds,tint=null,openEnd=false){
  const before=material.userData.journeyBeforeCompile??material.onBeforeCompile;

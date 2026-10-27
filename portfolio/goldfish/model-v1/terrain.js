@@ -1,6 +1,6 @@
 import * as THREE from '../../vendor/three.module.js';
-import {C,hash,coastZ,coastDistance,goldfishHeight,smooth,polygonDistance,stairContains} from './plan.mjs';
-import {terrainField,routeDistance} from './landform.mjs';
+import {C,hash,coastZ,coastDistance,goldfishHeight,smooth,polygonDistance,stairContains} from './plan.mjs?v=03bcba9148dc';
+import {terrainField,routeDistance} from './landform.mjs?v=03bcba9148dc';
 
 export function buildGround(f,p){
  const g=f.group('01 · Continuous coastal landscape'),field=terrainField(p),positions=[],colours=[];

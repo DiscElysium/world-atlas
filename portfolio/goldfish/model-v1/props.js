@@ -1,7 +1,7 @@
 import * as THREE from '../../vendor/three.module.js';
-import {C} from './plan.mjs';
-import {plantKit} from './ecology.js';
-import {GAME_PAPERS} from '../assets.js';
+import {C} from './plan.mjs?v=03bcba9148dc';
+import {plantKit} from './ecology.js?v=03bcba9148dc';
+import {GAME_PAPERS} from '../assets.js?v=03bcba9148dc';
 export function cropPrint(mesh,info){const [x0,y0,x1,y1]=info.crop,[w,h]=info.size,uv=mesh.geometry.attributes.uv;for(let i=0;i<uv.count;i++)uv.setXY(i,(x0+uv.getX(i)*(x1-x0))/w,1-(y0+(1-uv.getY(i))*(y1-y0))/h);uv.needsUpdate=true;}
 export function buildProps(f,p,textures={},animate=()=>{}){
  const g=f.group('08 · Individually assembled artist props and aquarium'),room=f.group('Props in studio coordinates',g);room.position.set(p.room.x,p.room.y,p.room.z);const k=plantKit(f);

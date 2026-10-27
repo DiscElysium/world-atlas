@@ -1,8 +1,8 @@
 import * as THREE from '../../vendor/three.module.js';
-import {seatedBody,maskShell,eyeSockets,eyeWalls} from './source-models.js';
-import {mergeMeshes} from '../geometry.js';
-import {buildChair} from '../04-table/index.js';
-import {SEATS} from '../layout.mjs';
+import {seatedBody,maskShell,eyeSockets,eyeWalls} from './source-models.js?v=03bcba9148dc';
+import {mergeMeshes} from '../geometry.js?v=03bcba9148dc';
+import {buildChair} from '../04-table/index.js?v=03bcba9148dc';
+import {SEATS} from '../layout.mjs?v=03bcba9148dc';
 
 function sourceGeometry(positions){const g=new THREE.BufferGeometry();g.setAttribute('position',new THREE.Float32BufferAttribute(positions,3));g.computeVertexNormals();return g;}
 const bodyGeo=sourceGeometry(seatedBody),maskGeo=sourceGeometry(maskShell),socketGeo=sourceGeometry(eyeSockets),wallGeo=sourceGeometry(eyeWalls);

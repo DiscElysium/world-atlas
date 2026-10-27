@@ -1,6 +1,6 @@
 import * as THREE from './vendor/three.module.js';
-import {tennisForms} from './tennis-forms.js';
-import {buildTennisAthlete} from './tennis-athlete.js';
+import {tennisForms} from './tennis-forms.js?v=03bcba9148dc';
+import {buildTennisAthlete} from './tennis-athlete.js?v=03bcba9148dc';
 
 // Render the actual modeled poses into a transparent scene-plane illustration.
 export function createTennisPortrait(renderer){

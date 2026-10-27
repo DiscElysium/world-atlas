@@ -1,5 +1,5 @@
 import * as THREE from '../../vendor/three.module.js';
-import {C,hash,goldfishHeight,inside,stairContains} from './plan.mjs';
+import {C,hash,goldfishHeight,inside,stairContains} from './plan.mjs?v=03bcba9148dc';
 function fittedStone(f,p,g,x,z,w,d,angle,colour){
  const corners=[[-w/2,-d/2],[-w/2,d/2],[w/2,d/2],[w/2,-d/2]],points=[];
  for(const [u,v] of corners){const xx=x+u*Math.cos(angle)+v*Math.sin(angle),zz=z-u*Math.sin(angle)+v*Math.cos(angle);points.push([xx,goldfishHeight(xx,zz,p)+.022,zz]);}

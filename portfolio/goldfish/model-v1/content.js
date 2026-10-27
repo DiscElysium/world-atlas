@@ -1,8 +1,8 @@
 import * as THREE from '../../vendor/three.module.js';
-import {C} from './plan.mjs';
-import {cropPrint} from './props.js';
-import {GAME_PAPERS} from '../assets.js';
-import {translate} from '../../i18n.mjs';
+import {C} from './plan.mjs?v=03bcba9148dc';
+import {cropPrint} from './props.js?v=03bcba9148dc';
+import {GAME_PAPERS} from '../assets.js?v=03bcba9148dc';
+import {translate} from '../../i18n.mjs?v=03bcba9148dc';
 export function buildGoldfishContent(f,p,textures={},anisotropy=4,language='zh'){
  const root=f.group('10 · Portfolio ink and torn-paper work image'),interactive=[],owned=[],y=p.levels.reading+.052;
  function print(name,text,frame,font='Georgia',weight='400',color=C.ink){

@@ -1,5 +1,5 @@
 import * as THREE from '../../vendor/three.module.js';
-import {C,hash,goldfishHeight,polygonDistance,stairContains} from './plan.mjs';
+import {C,hash,goldfishHeight,polygonDistance,stairContains} from './plan.mjs?v=03bcba9148dc';
 export function plantKit(f){
  const leaf=f.material(C.leaf),light=f.material('#98b477'),dark=f.material('#52764d'),petal=f.material(C.flower),yellow=f.material(C.yellow);
  const petalGeometry=new THREE.OctahedronGeometry(1,0);
