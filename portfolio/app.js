@@ -1,4 +1,4 @@
-import {PROJECTS as SOURCE_PROJECTS,STEP,imageURL} from './projects.mjs?v=eed7fff475f6';
+import {PROJECTS as SOURCE_PROJECTS,STEP,imageURL} from './projects.mjs?v=goldfish-20261101';
 import {LANGUAGE_KEY,resolveLanguage,localizedProject,translate,navName} from './i18n.mjs?v=eed7fff475f6';
 import {PortfolioWorld} from './portfolio-world.js?v=eed7fff475f6';
 import {copyCanvas,buttonCanvas,loadArtwork} from './content.js?v=eed7fff475f6';
@@ -7,7 +7,7 @@ import {loadGoldfishTextures} from './goldfish/assets.js?v=eed7fff475f6';
 import {createEmbeddedJourney} from './embedded-journey.js?v=eed7fff475f6';
 import {AtlasWorld} from './atlas-world.js?v=eed7fff475f6';
 import {createAtlasLoader} from './atlas-loader.js?v=eed7fff475f6';
-import {createProjectGuide} from './project-guide.js?v=eed7fff475f6';
+import {createProjectGuide} from './project-guide.js?v=goldfish-20261101';
 const unified=document.body.classList.contains('unified-atlas'),atlasLoader=unified?createAtlasLoader(THREE):null;
 let savedLanguage;try{savedLanguage=localStorage.getItem(LANGUAGE_KEY);}catch{}
 let language=resolveLanguage(new URLSearchParams(location.search).get('lang'),savedLanguage);

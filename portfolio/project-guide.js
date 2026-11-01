@@ -28,7 +28,7 @@ export function createProjectGuide({stage,projects,language,details,explore}){
  }
  return {
   update(view,world){
-   const en=copy(),home=view.index<0&&world.phase==='atelier',project=view.index>=0?projects[view.index]:null,reading=home||project?.id==='tennis'||project?.id==='engine';
+   const en=copy(),home=view.index<0&&world.phase==='atelier',project=view.index>=0?projects[view.index]:null,reading=home||project?.id==='tennis'||project?.id==='engine'||project?.id==='goldfish';
    const entry=project?world.entries.find(e=>e.project.id===project.id):null;
    opacity=home?1:entry?1-fade(.22,.46,Math.abs(world.cameraZ-entry.center)/world.L.depth):0;
    const nextKey=(project?.id||'atelier')+'/'+en+'/'+home;

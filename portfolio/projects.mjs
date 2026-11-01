@@ -42,6 +42,7 @@ export const PROJECTS = [
   },
   {
     id:'goldfish', number:'05', title:'GOLDFISH', name:'金鱼', category:'NARRATIVE COLOR PUZZLE',
+    website:'https://discelysium.github.io/world-atlas/goldfish/',
     intro:'吸色、填色、擦除，走进创作者的世界。', tags:'色彩叙事 · 拼贴世界 · 感知与表达', accent:'#cf5943', ink:'#3c3029', ground:'#f8efe0',
     palette:['#e6ddc8','#d5c9ac','#789072','#d3d0b2'], concept:'../goldfish/model-reference.png',
     artwork:'goldfish-room.jpg', artworkCaption:'金鱼 · 游戏中的创作者房间',
