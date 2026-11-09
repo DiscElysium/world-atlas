@@ -1,11 +1,11 @@
 import {PROJECTS as SOURCE_PROJECTS,STEP,imageURL} from './projects.mjs?v=goldfish-20261101';
 import {LANGUAGE_KEY,resolveLanguage,localizedProject,translate,navName} from './i18n.mjs?v=eed7fff475f6';
-import {PortfolioWorld} from './portfolio-world.js?v=load-light-20261109';
+import {PortfolioWorld} from './portfolio-world.js?v=mask-shadow-20261109';
 import {copyCanvas,buttonCanvas,loadArtwork} from './content.js?v=eed7fff475f6';
 import * as THREE from 'three';
 import {loadGoldfishTextures} from './goldfish/assets.js?v=eed7fff475f6';
 import {createEmbeddedJourney} from './embedded-journey.js?v=eed7fff475f6';
-import {AtlasWorld} from './atlas-world.js?v=load-light-20261109';
+import {AtlasWorld} from './atlas-world.js?v=mask-shadow-20261109';
 import {createAtlasLoader} from './atlas-loader.js?v=load-light-20261109';
 import {createProjectGuide} from './project-guide.js?v=goldfish-20261101';
 const unified=document.body.classList.contains('unified-atlas'),atlasLoader=unified?createAtlasLoader(THREE):null;

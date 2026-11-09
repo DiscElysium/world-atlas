@@ -17,15 +17,25 @@ export function clipChapter(entry,span,previous=entry.project,next=entry.project
  const bounds=new THREE.Vector2(entry.center-span/2,entry.center+span/2);
  entry.root.updateWorldMatrix(true,true);
  const tint={start:new THREE.Color(entry.project.ground).lerp(new THREE.Color(previous.ground),.5),end:new THREE.Color(entry.project.ground).lerp(new THREE.Color(next.ground),.5)};
+ const openEnd=entry.project.id==='otherworks',depthMaterials=new Set();
+ let clippedDepth;
  entry.root.traverse(mesh=>{
   if(!mesh.isMesh)return;
   if(mesh.userData.staticReferenceBatch)trimStaticBatchToChapter(mesh,bounds,span);
   const materials=Array.isArray(mesh.material)?mesh.material:[mesh.material];
   if(materials.some(m=>m.name==='planet_atmosphere'||m.name.startsWith('planet_surface_')))return;
   const ground=entry.terrainMeshes?.includes(mesh)||mesh===entry.land||mesh.userData.component_id==='P01'||/Continuous_white_geological_ground|Terrain_foundations_limestone_atlas/.test(mesh.name);
-  for(const material of materials)configureJourneyMaterial(material,bounds,ground?tint:null,entry.project.id==='otherworks');
-  if(mesh.customDepthMaterial)configureJourneyMaterial(mesh.customDepthMaterial,bounds,null,entry.project.id==='otherworks');
- });entry.journeyBounds=bounds;
+  for(const material of materials)configureJourneyMaterial(material,bounds,ground?tint:null,openEnd);
+  // The photo atelier extends into the previous chapter before clipping.
+  // Its sun pass must cut away the same geometry as its visible pass.
+  if(openEnd&&mesh.castShadow&&!mesh.customDepthMaterial){
+   clippedDepth??=new THREE.MeshDepthMaterial({depthPacking:THREE.RGBADepthPacking});
+   mesh.customDepthMaterial=clippedDepth;
+  }
+  if(mesh.customDepthMaterial)depthMaterials.add(mesh.customDepthMaterial);
+ });
+ for(const material of depthMaterials)configureJourneyMaterial(material,bounds,null,openEnd);
+ entry.journeyBounds=bounds;
 }
 
 export class ReferenceScenes{
