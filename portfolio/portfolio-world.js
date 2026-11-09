@@ -18,7 +18,7 @@ import {createJourneyGround} from './journey-ground.js?v=eed7fff475f6';
 import {bindJourneyTone,updateJourneyTone} from './journey-tone.js?v=eed7fff475f6';
 import {applyDaylight} from './daylight-rig.js?v=eed7fff475f6';
 import {STEP} from './projects.mjs?v=eed7fff475f6';
-import {RenderStyles} from './render-styles.js?v=eed7fff475f6';
+import {RenderStyles} from './render-styles.js?v=load-light-20261109';
 import {buildLiarsMask} from './scene-liars-mask.js?v=eed7fff475f6';
 import {buildContent as buildLiarsContent} from './liars-mask/06-content/index.js?v=eed7fff475f6';
 const BUILDERS={oblivion:buildOblivion,flow:buildFlow,goldfish:buildGoldfish,'liars-mask':buildLiarsMask};
@@ -35,7 +35,7 @@ export class PortfolioWorld{
   this.rim=new THREE.DirectionalLight('#4ca9ff',0);this.scene.add(this.rim,this.rim.target);
   this.references=new ReferenceScenes(this.renderer);
  }
- rebuild(width,height,specs,textures,extraTextures={}){
+ rebuild(width,height,specs,textures,extraTextures={},renderImmediately=true){
   this.references.detach();
   // Rebuilding the viewport also replaces framebuffer textures and their
   // compiled screen pass, so no sampler keeps a stale resized normal buffer.
@@ -73,7 +73,9 @@ export class PortfolioWorld{
   this.styles.resize(width,height);this.styles.rebuild(this.entries);this.references.resize(width,height);
   this.journeyGround=createJourneyGround(this.projects,this.span);this.scene.add(this.journeyGround);
   this.scene.traverse(mesh=>{if(mesh.material)for(const material of Array.isArray(mesh.material)?mesh.material:[mesh.material])bindJourneyTone(material);});
-  this.maxZ=(this.projects.length-1)*this.span+this.L.depth*(this.L.mobile?.035:.14);this.requestRender();this.ready=true;this.applyCamera();this.renderer.compile(this.scene,this.camera);this.renderFrame();
+  this.maxZ=(this.projects.length-1)*this.span+this.L.depth*(this.L.mobile?.035:.14);this.requestRender();this.ready=true;this.applyCamera();
+  // Atlas startup warms the assembled scene, including the worktop and its lamp.
+  if(renderImmediately){this.renderer.compile(this.scene,this.camera);this.renderFrame();}
  }
  buildTerrain(entry){
   if(['goldfish','liars-mask',...REFERENCE_IDS].includes(entry.project.id)){entry.land=null;entry.terrainMeshes=[];entry.revealUniform={value:0};return;}

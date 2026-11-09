@@ -1,6 +1,6 @@
 import {ATELIER_DAYLIGHT} from './daylight-rig.js?v=eed7fff475f6';
 import * as THREE from './vendor/three.module.js';
-import {PortfolioWorld} from './portfolio-world.js?v=eed7fff475f6';
+import {PortfolioWorld} from './portfolio-world.js?v=load-light-20261109';
 import {smooth} from './map-model.mjs?v=eed7fff475f6';
 import {loadAtelier,AtelierChapter,createAtelierConnector} from './atelier-chapter.js?v=eed7fff475f6';
 import {journeyTone} from './journey-tone.js?v=eed7fff475f6';
@@ -12,15 +12,15 @@ const clamp=x=>THREE.MathUtils.clamp(x,0,1);
 
 export class AtlasWorld extends PortfolioWorld{
  constructor(container,projects,loader){
-  super(container,projects);this.loader=loader;this.globalScroll=0;this.displayScroll=0;this.prefix={intro:2.6,hold:.15,travel:1.25};this.preludeScreens=4;this.phase='cover';this.activeCamera=this.camera;
-  this.assembly=loadAtelier(p=>loader?.update(.68+.16*p,'atelier-model'));
+  super(container,projects);this.globalScroll=0;this.displayScroll=0;this.prefix={intro:2.6,hold:.15,travel:1.25};this.preludeScreens=4;this.phase='cover';this.activeCamera=this.camera;
+  this.assembly=loadAtelier().then(asset=>{loader?.update(.78,'atelier-ready');return asset;});
   this.renderer.shadowMap.autoUpdate=false;this.materialization=new AtlasMaterialization(this.renderer);
  }
  get scrollProgress(){return this.globalScroll/(this.L?.height||innerHeight);}
  get renderProgress(){return this.displayScroll/(this.L?.height||innerHeight);}
  async prepare(){this.asset=await this.assembly;}
  rebuild(width,height,specs,textures,extras={}){
-  this.building=true;try{super.rebuild(width,height,specs,textures,extras);}finally{this.building=false;}
+  this.building=true;try{super.rebuild(width,height,specs,textures,extras,!!this.atelier);}finally{this.building=false;}
   if(!this.atelier){this.atelier=new AtelierChapter(this.renderer,this.asset,width,height);this.scene.add(this.atelier.group);}
   else this.atelier.resize(width,height);
   this.atelier.setCenter(-this.span*.5-this.atelier.frontExtent-4);
@@ -95,7 +95,12 @@ export class AtlasWorld extends PortfolioWorld{
   this.pointer.set(x*2-1,1-y*2);const near=new THREE.Vector3(this.pointer.x,this.pointer.y,-1).unproject(this.camera),far=new THREE.Vector3(this.pointer.x,this.pointer.y,1).unproject(this.camera);this.raycaster.set(near,far.sub(near).normalize());const id=this.atelier.pick(this.raycaster);return id?{id,kind:'chapter'}:null;
  }
  async warmUp(){
-  const previous=this.displayScroll;this.loader?.update(.94,'compiling-model-materials');this.displayScroll=2.6*this.L.height;this.applyPrefix();await this.renderer.compileAsync(this.scene,this.camera);this.renderFrame();this.displayScroll=2*this.L.height;this.applyPrefix();this.renderFrame();this.displayScroll=3.5*this.L.height;this.applyPrefix();await this.renderer.compileAsync(this.scene,this.camera);this.renderFrame();this.displayScroll=previous;this.applyPrefix();this.renderFrame();this.loader?.update(.98,'cover-frame-ready');
+  const previous=this.displayScroll;
+  this.displayScroll=2.6*this.L.height;this.applyPrefix();
+  await this.renderer.compileAsync(this.scene,this.camera);this.renderFrame();
+  this.displayScroll=2*this.L.height;this.applyPrefix();this.renderFrame();
+  this.displayScroll=3.5*this.L.height;this.applyPrefix();this.renderFrame();
+  this.displayScroll=previous;this.applyPrefix();this.requestRender();
  }
  diagnostics(){return {phase:this.phase,scrollScreens:this.renderProgress,targetScreens:this.scrollProgress,prefix:this.prefix,preludeScreens:this.preludeScreens,singleScene:true,canvasCount:document.querySelectorAll('canvas').length,cameraId:this.camera.uuid,cameraPitch:THREE.MathUtils.radToDeg(Math.asin(-this.camera.getWorldDirection(new THREE.Vector3()).y)),atelier:this.atelier?.state(),connector:this.connector?.userData.connector,camera:this.camera.position.toArray()};}
 }

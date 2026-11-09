@@ -1,12 +1,12 @@
 import {PROJECTS as SOURCE_PROJECTS,STEP,imageURL} from './projects.mjs?v=goldfish-20261101';
 import {LANGUAGE_KEY,resolveLanguage,localizedProject,translate,navName} from './i18n.mjs?v=eed7fff475f6';
-import {PortfolioWorld} from './portfolio-world.js?v=eed7fff475f6';
+import {PortfolioWorld} from './portfolio-world.js?v=load-light-20261109';
 import {copyCanvas,buttonCanvas,loadArtwork} from './content.js?v=eed7fff475f6';
 import * as THREE from 'three';
 import {loadGoldfishTextures} from './goldfish/assets.js?v=eed7fff475f6';
 import {createEmbeddedJourney} from './embedded-journey.js?v=eed7fff475f6';
-import {AtlasWorld} from './atlas-world.js?v=eed7fff475f6';
-import {createAtlasLoader} from './atlas-loader.js?v=eed7fff475f6';
+import {AtlasWorld} from './atlas-world.js?v=load-light-20261109';
+import {createAtlasLoader} from './atlas-loader.js?v=load-light-20261109';
 import {createProjectGuide} from './project-guide.js?v=goldfish-20261101';
 const unified=document.body.classList.contains('unified-atlas'),atlasLoader=unified?createAtlasLoader(THREE):null;
 let savedLanguage;try{savedLanguage=localStorage.getItem(LANGUAGE_KEY);}catch{}
@@ -80,17 +80,18 @@ async function boot(){
   const loader=new THREE.TextureLoader();
   const loaded=await Promise.all([
    Promise.all(VISIBLE_PROJECTS.map(p=>loadArtwork(semantic.querySelector('[data-project="'+p.id+'"] img')))),
-   Promise.all(['male','woman','goldfish'].map(name=>loader.loadAsync(imageURL('paper-'+name+'.png')))),
    Promise.all(['./assets/goldfish/seated-couple.png','./assets/projects/goldfish-room.jpg'].map(src=>loader.loadAsync(src))),
    loadGoldfishTextures(loader,Math.min(8,world.renderer.capabilities.getMaxAnisotropy())),
    world.references.load(),
    unified?world.prepare():Promise.resolve()
   ]);
   textures=loaded[0];loaded[1].forEach(t=>t.colorSpace=THREE.SRGBColorSpace);
-  loaded[2].forEach(t=>t.colorSpace=THREE.SRGBColorSpace);
-  extraTextures={male:loaded[1][0],woman:loaded[1][1],fish:loaded[1][2],couple:loaded[2][0],runtime:loaded[2][1],reference:textures[VISIBLE_PROJECTS.findIndex(p=>p.id==='goldfish')],...loaded[3]};
-  await document.fonts.ready;if(unified)await atlasLoader.ready;atlasLoader?.update(.90,'building-world');await new Promise(resolve=>requestAnimationFrame(resolve));resize();
-  if(unified){await atlasLoader.ready;await world.warmUp();}
+  extraTextures={couple:loaded[1][0],runtime:loaded[1][1],reference:textures[VISIBLE_PROJECTS.findIndex(p=>p.id==='goldfish')],...loaded[2]};
+  await document.fonts.ready;
+  if(unified){await atlasLoader.ready;atlasLoader.beginFinalizing();}
+  await new Promise(resolve=>requestAnimationFrame(()=>setTimeout(resolve,0)));
+  resize();
+  if(unified)await world.warmUp();
   document.body.dataset.references='ready';
   function animate(t){
    frame=requestAnimationFrame(animate);
