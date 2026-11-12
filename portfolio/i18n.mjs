@@ -21,7 +21,7 @@ export const ENGLISH_PROJECTS={
  summary:'Created in collaboration with Alibaba’s Orange Lion Sports for amateur tennis players. Body movement, ball trajectories and key moments become sports stories that players can select, compose and share.',
  details:[['Capture moments worth remembering','Analyze movement, ball trajectories and events in training videos to bring data into sports storytelling.'],['Keep room for personal expression','Choose a narrative direction and visual effects, then compose images with an individual character.'],['Take a story with you','A wire-wrapping installation, short poems, transparent effect cards and a website connect bodily experience with self-expression.']],
  gallery:['The Portrait of the Body · Product board','Interactive installation and project exhibition','Tracking and data translation'],role:'Design research / Sports data visualization'},
- flow:{name:'Between Mountains and Water',intro:'Shape the land. Wake a silent valley.',tags:'Terrain sculpting · Water simulation · Ecological response',artworkCaption:'FLOW · Island II gameplay',
+ flow:{name:'Water Flow',intro:'Shape the land. Wake a silent valley.',tags:'Terrain sculpting · Water simulation · Ecological response',artworkCaption:'FLOW · Island II gameplay',
  summary:'Shape the terrain to guide glacial meltwater through a dry valley. Water, trees, flowers, birds and sound gradually respond, creating a quiet journey from snowy peaks to the sea.',
  details:[['Core interaction','Raise, carve and smooth the terrain. Watch the waterways change and let the environment express its return to life.'],['Natural systems','Low-poly ridges, height-field water, ecological changes and a continuous day–night cycle form the landscape.'],['Production','Three.js / TypeScript. Reproducible terrain generation, volume-conserving water flow and stylized natural lighting.']],
  gallery:['Island II · Mountains and waterways at noon','Island II · Nighttime gameplay'],role:'Poetic interaction / Terrain and water'},
@@ -41,7 +41,7 @@ export const ENGLISH_PROJECTS={
 const CHINESE_CATEGORIES={oblivion:'知识驱动的探索',tennis:'身体的肖像',flow:'山水间的诗意交互',engine:'移动自动化工厂',goldfish:'色彩叙事解谜','liars-mask':'虚张声势 · 判断 · 质疑',otherworks:'其他视角 · 七个探索'};
 export function localizedProject(project,language='zh'){
  const translated=ENGLISH_PROJECTS[project.id];
- if(language!=='en')return{...project,category:CHINESE_CATEGORIES[project.id]??project.category,language:'zh'};
+ if(language!=='en')return{...project,title:project.id==='flow'?project.name:project.title,category:CHINESE_CATEGORIES[project.id]??project.category,language:'zh'};
  return{...project,...translated,category:project.category,gallery:project.gallery.map(([file],i)=>[file,translated.gallery[i]]),language:'en'};
 }
 export function navName(project,language='zh'){

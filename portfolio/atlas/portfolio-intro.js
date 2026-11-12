@@ -41,7 +41,7 @@ function paperInkMaterial(atlas){
   return {material,uniforms};
 }
 
-function planAtlas(renderer,entries,root){
+function planAtlas(renderer,entries,root,localizedLabel){
   const box=new THREE.Box3();entries.filter(e=>e.index<6).forEach(e=>box.union(e.box));
   const bounds={x0:box.min.x-3,x1:box.max.x+3,z0:box.min.z-3,z1:box.max.z+3};
   const width=bounds.x1-bounds.x0,height=bounds.z1-bounds.z0;
@@ -63,11 +63,12 @@ function planAtlas(renderer,entries,root){
   // including their type, colour, Chinese subtitles and position on the paper.
   root.traverse(o=>{
     if(!o.isMesh||!['project_title','project_subtitle'].includes(o.userData.label_role)||!Number.isInteger(o.userData.label_index)||o.userData.label_index>=6)return;
+    reservations.push(new THREE.Box3().setFromObject(o));
+    if(o===localizedLabel)return;
     const source=Array.isArray(o.material)?o.material:[o.material],mats=source.map(m=>{
       const copy=new THREE.MeshBasicMaterial({color:m.color?.clone()||new THREE.Color('#41555b'),map:m.map,alphaMap:m.alphaMap,alphaTest:m.alphaTest,transparent:m.transparent,opacity:m.opacity,side:THREE.DoubleSide});temporary.push(copy);return copy;
     });
     const mesh=new THREE.Mesh(o.geometry,Array.isArray(o.material)?mats:mats[0]);mesh.matrixAutoUpdate=false;mesh.matrix.copy(o.matrixWorld);labels.add(mesh);labelProjects.add(o.userData.label_index);
-    reservations.push(new THREE.Box3().setFromObject(o));
   });
   const oldTarget=renderer.getRenderTarget(),oldClear=renderer.getClearColor(new THREE.Color()),oldAlpha=renderer.getClearAlpha(),oldShadow=renderer.shadowMap.enabled,oldTone=renderer.toneMapping;
   const rt=new THREE.WebGLRenderTarget(w,h,{depthBuffer:true}),normal=new THREE.MeshNormalMaterial({side:THREE.DoubleSide});
@@ -110,7 +111,35 @@ function planAtlas(renderer,entries,root){
   }
   labelContext.putImageData(letterImage,0,0);
   const draft=designDraft({plan:atlas,labels:labelCanvas,entries,bounds,width,height,reservations});
-  return {...draft,texture:texture(draft.canvas),bounds,width,height,inkPixels,labelProjects:[...labelProjects].sort().map(index=>entries[index].project.title)};
+  let paintLocalizedLabel;
+  if(localizedLabel){
+    localizedLabel.geometry.computeBoundingBox();
+    const box=localizedLabel.geometry.boundingBox;
+    const paperPoint=(x,z)=>{
+      const p=new THREE.Vector3(x,box.min.y,z).applyMatrix4(localizedLabel.matrixWorld);
+      return new THREE.Vector2((p.x-bounds.x0)*w/width,(p.z-bounds.z0)*h/height);
+    };
+    const a=paperPoint(box.min.x,box.min.z),b=paperPoint(box.max.x,box.min.z),c=paperPoint(box.min.x,box.max.z),d=paperPoint(box.max.x,box.max.z);
+    const x=Math.floor(Math.min(a.x,b.x,c.x,d.x)),y=Math.floor(Math.min(a.y,b.y,c.y,d.y));
+    const patchWidth=Math.ceil(Math.max(a.x,b.x,c.x,d.x))-x,patchHeight=Math.ceil(Math.max(a.y,b.y,c.y,d.y))-y;
+    const layers=[draft.layers.notes,draft.canvas].map(layer=>{
+      const context=layer.getContext('2d');
+      return {context,pixels:context.getImageData(x,y,patchWidth,patchHeight)};
+    });
+    // Project the same printed label onto the notes at its authored position.
+    paintLocalizedLabel=()=>{
+      const image=localizedLabel.material.map.image;
+      for(const {context,pixels} of layers){
+        context.putImageData(pixels,x,y);
+        context.save();
+        context.setTransform((b.x-a.x)/image.width,(b.y-a.y)/image.width,(c.x-a.x)/image.height,(c.y-a.y)/image.height,a.x,a.y);
+        context.drawImage(image,0,0);
+        context.restore();
+      }
+    };
+    paintLocalizedLabel();
+  }
+  return {...draft,paintLocalizedLabel,texture:texture(draft.canvas),bounds,width,height,inkPixels,labelProjects:[...labelProjects].sort().map(index=>entries[index].project.title)};
 }
 
 function paperFaces(root,atlas){
@@ -140,8 +169,8 @@ function paperFaces(root,atlas){
   return {mesh,datum,triangles:found,uniforms};
 }
 
-export function createPortfolioIntro({renderer,scene,root,camera,entries,homePosition,homeTarget,getHomeWidth,getAspect,render,restoreHome,onReplay,reduced=false,scrollControlled=false}){
-  const started=performance.now(),atlas=planAtlas(renderer,entries,root),surface=paperFaces(root,atlas);scene.add(surface.mesh);
+export function createPortfolioIntro({renderer,scene,root,camera,entries,localizedLabel,homePosition,homeTarget,getHomeWidth,getAspect,render,restoreHome,onReplay,reduced=false,scrollControlled=false}){
+  const started=performance.now(),atlas=planAtlas(renderer,entries,root,localizedLabel),surface=paperFaces(root,atlas);scene.add(surface.mesh);
   const controls=document.createElement('div');controls.className='folio-intro-controls';controls.innerHTML='<small>01 — 03</small><button type="button">跳过开场 ↗</button>';document.body.append(controls);
   const button=controls.querySelector('button'),caption=document.createElement('div');caption.className='folio-intro-caption';caption.innerHTML='SELECTED WORLDS<span>从纸面，走入六个世界。</span>';document.body.append(caption);
   const labels=[];
@@ -209,7 +238,7 @@ export function createPortfolioIntro({renderer,scene,root,camera,entries,homePos
   function exportSurface(){return atlas.canvas.toDataURL('image/png');}
   button.addEventListener('click',()=>active?skip():replay());
   document.addEventListener('visibilitychange',()=>{last=null;});
-  const api={seek,replay,skip,state,get materialization(){return materialization;},withDraftOnly(fn){const nodes=[root,architecture,...projectWrappers],visibility=nodes.map(o=>o.visible);nodes.forEach(o=>o.visible=false);try{return fn();}finally{nodes.forEach((o,i)=>o.visible=visibility[i]);}},get active(){return active;},get playing(){return playing;},tick(time){if(!active)return false;if(playing&&!document.hidden){if(last!==null)elapsed+=Math.min((time-last)/1000,.10);last=time;}apply(elapsed);render();return true;},resize(){if(active){apply(elapsed);render();}},exportPlan(){return atlas.canvas.toDataURL('image/png');},exportSurface,exportLayer(name){if(!atlas.layers[name])throw Error('Unknown drawing layer');return atlas.layers[name].toDataURL('image/png');}};
+  const api={seek,replay,skip,state,refreshLocalizedLabel(){atlas.paintLocalizedLabel?.();surface.uniforms.draft_notes.value.needsUpdate=true;},get materialization(){return materialization;},withDraftOnly(fn){const nodes=[root,architecture,...projectWrappers],visibility=nodes.map(o=>o.visible);nodes.forEach(o=>o.visible=false);try{return fn();}finally{nodes.forEach((o,i)=>o.visible=visibility[i]);}},get active(){return active;},get playing(){return playing;},tick(time){if(!active)return false;if(playing&&!document.hidden){if(last!==null)elapsed+=Math.min((time-last)/1000,.10);last=time;}apply(elapsed);render();return true;},resize(){if(active){apply(elapsed);render();}},exportPlan(){return atlas.canvas.toDataURL('image/png');},exportSurface,exportLayer(name){if(!atlas.layers[name])throw Error('Unknown drawing layer');return atlas.layers[name].toDataURL('image/png');}};
   window.__PORTFOLIO_INTRO__=api;
   const params=new URLSearchParams(location.search),time=params.get('introTime');
   if(scrollControlled)seek(0);else if(reduced||location.hash||params.get('intro')==='skip'||params.has('study'))skip();else if(time!==null)seek(Number(time)||0);else apply(0);

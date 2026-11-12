@@ -10,7 +10,7 @@ export const PROJECTS = [
     gallery:[['oblivion-mirror.jpg','镜面玩法实机'],['oblivion-bridge.jpg','桥与建筑模型']], role:'知识锁探索 / 空间解谜'
   },
   {
-    id:'flow', number:'04', title:'FLOW', name:'山水之间', category:'POETIC TERRAIN PLAY',
+    id:'flow', number:'04', title:'FLOW', name:'水流', category:'POETIC TERRAIN PLAY',
     website:'https://flow-island-portfolio.1598509191.workers.dev/',
     intro:'塑造山水，让沉默的山谷苏醒。', tags:'地形塑造 · 水流模拟 · 生态回应', accent:'#91b38c', ink:'#315856', ground:'#e5e5cf',
     palette:['#e5e5cf','#acc3a2','#c8cccc','#fbfafa'], concept:'../flow/approved-reference-v3.png',

@@ -2,7 +2,7 @@ import {ATELIER_DAYLIGHT} from './daylight-rig.js?v=eed7fff475f6';
 import * as THREE from './vendor/three.module.js';
 import {PortfolioWorld} from './portfolio-world.js?v=mask-shadow-20261109';
 import {smooth} from './map-model.mjs?v=eed7fff475f6';
-import {loadAtelier,AtelierChapter,createAtelierConnector} from './atelier-chapter.js?v=eed7fff475f6';
+import {loadAtelier,AtelierChapter,createAtelierConnector} from './atelier-chapter.js?v=flow-name-20261111';
 import {journeyTone} from './journey-tone.js?v=eed7fff475f6';
 import {cameraInfluence} from './reference-scenes.js?v=mask-shadow-20261109';
 import {smoother} from './atlas/atelier-composition.js?v=eed7fff475f6';
@@ -21,8 +21,9 @@ export class AtlasWorld extends PortfolioWorld{
  async prepare(){this.asset=await this.assembly;}
  rebuild(width,height,specs,textures,extras={}){
   this.building=true;try{super.rebuild(width,height,specs,textures,extras,!!this.atelier);}finally{this.building=false;}
-  if(!this.atelier){this.atelier=new AtelierChapter(this.renderer,this.asset,width,height);this.scene.add(this.atelier.group);}
-  else this.atelier.resize(width,height);
+  const flowName=this.projects.find(project=>project.id==='flow')?.name;
+  if(!this.atelier){this.atelier=new AtelierChapter(this.renderer,this.asset,width,height,flowName);this.scene.add(this.atelier.group);}
+  else this.atelier.resize(width,height,flowName);
   this.atelier.setCenter(-this.span*.5-this.atelier.frontExtent-4);
   if(this.connector){this.scene.remove(this.connector);this.connector.traverse(o=>{o.geometry?.dispose();o.material?.dispose();});}
   this.connector=createAtelierConnector(this.atelier,this.entries[0],this.span);this.scene.add(this.connector);

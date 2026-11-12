@@ -1,12 +1,12 @@
 import * as THREE from './vendor/three.module.js';
 import {GLTFLoader} from './vendor/addons/loaders/GLTFLoader.js';
 import {mergeGeometries} from './vendor/addons/utils/BufferGeometryUtils.js';
-import {createPortfolioIntro} from './atlas/portfolio-intro.js?v=eed7fff475f6';
+import {createPortfolioIntro} from './atlas/portfolio-intro.js?v=flow-name-20261111';
 import {applyOblivionInk} from './atlas/oblivion-ink.js?v=eed7fff475f6';
 import {createSurroundingDraft} from './atlas-surroundings.js?v=eed7fff475f6';
 import {bindJourneyTone} from './journey-tone.js?v=eed7fff475f6';
 import {WORKTOP_VIEW,worktopWidth} from './atlas/atelier-composition.js?v=eed7fff475f6';
-import {replaceGroundWordmark} from './space-identity.js?v=eed7fff475f6';
+import {replaceGroundWordmark} from './space-identity.js?v=flow-name-20261111';
 const smooth=(a,b,x)=>{const t=THREE.MathUtils.clamp((x-a)/(b-a),0,1);return t*t*(3-2*t);};
 
 function batch(root){
@@ -29,11 +29,15 @@ export async function loadAtelier(progress){
  ]);return {root:asset.scene,projects:catalog.projects};
 }
 export class AtelierChapter{
- constructor(renderer,asset,width,height){
+ constructor(renderer,asset,width,height,flowName){
   this.renderer=renderer;this.width=width;this.height=height;this.group=new THREE.Group();this.group.name='Chapter 00 / author worktop';const root=asset.root;this.group.add(root);root.updateMatrixWorld(true);
   this.entries=asset.projects.map((project,index)=>({project,index,groups:[],box:new THREE.Box3()}));
   root.traverse(o=>{
    if(o.isMesh&&o.userData.label_role==='project_title'&&o.userData.label_index===3)replaceGroundWordmark(o,'SPACE');
+   if(o.isMesh&&o.userData.label_role==='project_subtitle'&&this.entries[o.userData.label_index]?.project.id==='flow'){
+    this.flowSubtitle=o;
+    this.drawFlowSubtitle=replaceGroundWordmark(o,flowName??'水流','#'+o.material.color.getHexString(),{proportional:true});
+   }
    const number=/^Drafted_project_number_([23])$/.exec(o.name);if(o.isMesh&&number){const index=Number(number[1]);replaceGroundWordmark(o,index===2?'04':'03','#'+o.material.color.getHexString());o.userData.label_role='project_number';o.userData.label_index=index;o.userData.chapterNumber=index===2?'04':'03';}
    if(Number.isInteger(o.userData.project_index))this.entries[o.userData.project_index]?.groups.push(o);
    if(o.isMesh){o.castShadow=!o.userData.surface_marking;o.receiveShadow=!o.userData.surface_marking;
@@ -49,7 +53,7 @@ export class AtelierChapter{
   this.originalMaterials=new Set();root.traverse(o=>{if(o.material)for(const m of Array.isArray(o.material)?o.material:[o.material])this.originalMaterials.add(m);});
   this.homePosition=new THREE.Vector3(...WORKTOP_VIEW.position);this.homeTarget=new THREE.Vector3(...WORKTOP_VIEW.target);this.camera=new THREE.OrthographicCamera(-28,28,16,-16,.1,400);
   const restore=()=>{this.camera.position.copy(this.homePosition);this.camera.up.set(0,1,0);this.camera.lookAt(this.homeTarget);};restore();
-  this.intro=createPortfolioIntro({renderer,scene:this.group,root,camera:this.camera,entries:this.entries,homePosition:this.homePosition,homeTarget:this.homeTarget,getHomeWidth:()=>this.homeWidth,getAspect:()=>this.width/this.height,render(){},restoreHome:restore,scrollControlled:true});
+  this.intro=createPortfolioIntro({renderer,scene:this.group,root,camera:this.camera,entries:this.entries,localizedLabel:this.flowSubtitle,homePosition:this.homePosition,homeTarget:this.homeTarget,getHomeWidth:()=>this.homeWidth,getAspect:()=>this.width/this.height,render(){},restoreHome:restore,scrollControlled:true});
   this.intro.seek(this.intro.state().duration);this.surroundings=createSurroundingDraft(this.group,this.draftExtent);this.group.add(this.surroundings.mesh);this.intro.seek(0);
   this.lamp=new THREE.PointLight('#ffe6bc',16,7,2);this.lamp.position.set(17.5,3.9,-9.5);this.group.add(this.lamp);
   this.terrain=[];this.group.traverse(o=>{if(o.isMesh){for(let p=o;p;p=p.parent)if(Number.isInteger(p.userData.project_index))return;if(!o.userData.surface_marking)this.terrain.push(o);}});
@@ -58,8 +62,12 @@ export class AtelierChapter{
  get homeWidth(){return worktopWidth(this.width,this.height);}
  get frontExtent(){return Math.max(28,this.homeWidth/(2*(this.width/this.height)*.6767)+3);}
  get draftExtent(){return Math.max(150,this.frontExtent*2+12);}
- resize(width,height){
+ resize(width,height,flowName){
   this.width=width;this.height=height;
+  if(flowName&&this.flowSubtitle&&this.flowSubtitle.userData.displayTitle!==flowName){
+   this.drawFlowSubtitle(flowName);
+   this.intro.refreshLocalizedLabel();
+  }
   if(this.surroundings&&this.draftExtent>this.surroundings.extent+1){
    const previous=Math.max(0,this.phase??0);this.intro.seek(this.intro.state().duration);
    const old=this.surroundings;old.mesh.removeFromParent();old.mesh.geometry.dispose();old.mesh.material.map.dispose();old.mesh.material.dispose();

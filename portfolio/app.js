@@ -1,11 +1,11 @@
-import {PROJECTS as SOURCE_PROJECTS,STEP,imageURL} from './projects.mjs?v=goldfish-20261101';
-import {LANGUAGE_KEY,resolveLanguage,localizedProject,translate,navName} from './i18n.mjs?v=eed7fff475f6';
+import {PROJECTS as SOURCE_PROJECTS,STEP,imageURL} from './projects.mjs?v=flow-name-20261111';
+import {LANGUAGE_KEY,resolveLanguage,localizedProject,translate,navName} from './i18n.mjs?v=flow-name-20261111';
 import {PortfolioWorld} from './portfolio-world.js?v=mask-shadow-20261109';
 import {copyCanvas,buttonCanvas,loadArtwork} from './content.js?v=eed7fff475f6';
 import * as THREE from 'three';
 import {loadGoldfishTextures} from './goldfish/assets.js?v=eed7fff475f6';
 import {createEmbeddedJourney} from './embedded-journey.js?v=eed7fff475f6';
-import {AtlasWorld} from './atlas-world.js?v=mask-shadow-20261109';
+import {AtlasWorld} from './atlas-world.js?v=flow-name-20261111';
 import {createAtlasLoader} from './atlas-loader.js?v=load-light-20261109';
 import {createProjectGuide} from './project-guide.js?v=goldfish-20261101';
 const unified=document.body.classList.contains('unified-atlas'),atlasLoader=unified?createAtlasLoader(THREE):null;
@@ -23,9 +23,10 @@ const guide=unified?createProjectGuide({stage,projects:PROJECTS,language:()=>lan
 scrollCue?.addEventListener('click',()=>{navigationRevision++;scrollToPage(stage.clientHeight*.55,media.matches?'instant':'smooth');});
 const preservedProgress=()=>world?.L?(world.scrollProgress??world.cameraZ/world.L.depth):null;
 function rememberDialogPosition(){dialogScroll=scrollPosition();dialogProgress=preservedProgress();}
+const projectLabel=p=>p.title===p.name?p.title:p.title+' · '+p.name;
 function make(tag,className,text){const e=document.createElement(tag);if(className)e.className=className;if(text!==undefined)e.textContent=text;return e;}
 PROJECTS.forEach((p,i)=>{
- const chapter=make('article','semantic-chapter');chapter.dataset.project=p.id;chapter.style.setProperty('--ink',p.ink);chapter.style.setProperty('--accent',p.accent);chapter.style.setProperty('--ground',p.ground);chapter.setAttribute('aria-label',p.title+' · '+p.name);
+ const chapter=make('article','semantic-chapter');chapter.dataset.project=p.id;chapter.style.setProperty('--ink',p.ink);chapter.style.setProperty('--accent',p.accent);chapter.style.setProperty('--ground',p.ground);chapter.setAttribute('aria-label',projectLabel(p));
  const copy=make('div','project-copy'),text=make('div','copy-text'),eyebrow=make('p','eyebrow');eyebrow.append(make('span','',p.number),document.createTextNode(p.category));text.append(eyebrow,make('h1','',p.title));if(p.id==='goldfish'||p.id==='tennis')text.append(make('p','project-name',p.name));text.append(make('p','intro',p.intro),make('p','disciplines',p.tags));
  const button=make(p.website?'a':'button','project-open',t('view'));if(p.website){button.href=p.website;button.target='_blank';button.rel='noopener noreferrer';button.setAttribute('aria-label',t('openWebsite',p));}else button.type='button';button.dataset.project=p.id;button.tabIndex=i===0?0:-1;copy.append(text,button);
  const art=make('figure','project-art'),artButton=make('button','art-open'),image=make('img');artButton.type='button';artButton.dataset.project=p.id;artButton.setAttribute('aria-label',t('artLabel',p));artButton.tabIndex=i===0?0:-1;image.src=imageURL(p.artwork||p.concept.replace('.png','.webp'));image.alt=t(p.artwork?'artAlt':'conceptAlt',p);image.width=1672;image.height=941;artButton.append(image);art.append(artButton);if(p.id!=='tennis')art.append(make('figcaption','art-caption',p.artworkCaption||t('conceptCaption')));chapter.append(copy,art);semantic.append(chapter);
@@ -44,7 +45,8 @@ function refreshLanguage(){
  if(unified){document.getElementById('atlas-back').textContent=language==='en'?'↑ Worktop':'↑ 制图台';document.getElementById('atlas-loader').setAttribute('aria-label',language==='en'?'Loading the portfolio world':'加载作品世界');scrollCue.querySelector('span').textContent=t('unfoldHint');}
  document.querySelectorAll('[data-language]').forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.language===language)));
  PROJECTS.forEach((p,i)=>{
-  const chapter=semantic.querySelector('[data-project="'+p.id+'"]');chapter.setAttribute('aria-label',p.title+' · '+p.name);
+  const chapter=semantic.querySelector('[data-project="'+p.id+'"]');chapter.setAttribute('aria-label',projectLabel(p));
+  chapter.querySelector('h1').textContent=p.title;
   const eyebrow=chapter.querySelector('.eyebrow');eyebrow.replaceChildren(make('span','',p.number),document.createTextNode(p.category));
   const name=chapter.querySelector('.project-name');if(name)name.textContent=p.name;
   chapter.querySelector('.intro').textContent=p.intro;chapter.querySelector('.disciplines').textContent=p.tags;chapter.querySelector('.project-open').textContent=t('view');if(p.website)chapter.querySelector('.project-open').setAttribute('aria-label',t('openWebsite',p));
